@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.css?1360855188709"/>
+<link rel="stylesheet" type="text/css" href="/css/hicons.css?1360855188709"/>
+<link rel="stylesheet" type="text/css" href="/css/layout.css?1360855188709"/>
+<link rel="stylesheet" type="text/css" href="/css/dashboard.css?1360855188709"/>
+<link rel="stylesheet" type="text/css" href="/css/graph-display.css?1360855188709"/>
+<link rel="stylesheet" type="text/css" href="/css/chart.css?1360855188709"/>
+    <link type="image/ico" rel="icon" href="/favicon.ico">
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
+    <title>Limn
+    </title>
+  </head>
+  <body>
+    <section id="content">
+      <div class="inner">
+        <section data-bind="subview: currentView" class="page">
+        </section>
+      </div>
+    </section>
+    <footer>
+      <div class="info-row row-fluid">
+        <div class="site-map col span4">
+          <h3><i class="hicon-chart-curve icon-white icon-sm"></i><a href="/">Limn</a>
+          </h3>
+          <ul class="site-level">
+            <li><i class="icon-home icon-white"></i><a href="/">Home</a>
+            </li>
+            <li><i class="icon-th icon-white"></i><a href="/datasources">Browse Data</a>
+            </li>
+            <li><i class="icon-glass icon-white"></i><a href="https://github.com/wikimedia/limn" target="_blank">About, Help, and Feedback</a>
+            </li>
+            <li><i class="icon-bookmark icon-white"></i><a href="http://mediawiki.org/wiki/Analytics" target="_blank">Other Projects</a>
+            </li>
+          </ul>
+        </div>
+        <div class="get-involved col span4">
+          <h3><i class="icon-comment icon-white"></i><a href="/project">Get Involved!</a>
+          </h3>
+          <p><a href="http://www.mediawiki.org/wiki/Analytics/Limn" target="_blank">Limn</a> is
+<a href="https://github.com/wikimedia/limn" target="_blank">open-source software</a>, made with love by the
+<a href="http://www.mediawiki.org/wiki/Analytics#Team" target="_blank">Wikimedia Analytics Team</a>.
+
+          </p>
+          <p>Find a bug or have a suggestion?
+<a href="https://github.com/wikimedia/limn" target="_blank">We'd love to hear from you!</a>
+          </p>
+        </div>
+        <div class="about-wmf col span4">
+          <h3><i class="icon-wmf icon-white"></i><a href="http://wikimedia.org" target="_blank">The Wikimedia Movement</a>
+          </h3>
+          <p><a href="http://wikimediafoundation.org/wiki/Wikimedia:About" target="_blank">The Wikimedia Foundation</a> is the non-profit organization that operates 
+<a href="http://wikipedia.org" target="_blank">Wikipedia</a> and  
+<a href="http://wikimedia.org" target="_blank">other free knowledge projects</a>.
+
+          </p>
+          <p>If you're excited about community analytics, check out some of the 
+<a href="http://stats.wikimedia.org" target="_blank">other stuff we're working on</a>.
+
+          </p>
+        </div>
+      </div>
+      <div class="copyright-row row-fluid">
+        <div xmlns:dct="http://purl.org/dc/terms/" class="copyright inner"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license" title="Public Domain" target="_blank" class="public-domain image"></a>To the extent possible under law, 
+<a href="http://www.wikimediafoundation.org" rel="dct:publisher" title="The Wikimedia Foundation" target="_blank"><span property="dct:title">The Wikimedia Foundation</span></a> has waived all copyright and related or neighboring rights to the 
+<span property="dct:title">Monthly Report Card data and charts</span>.
+
+        </div>
+      </div>
+      <div class="tos-row row-fluid"><a href="http://wikimediafoundation.org/wiki/Terms_of_use" target="_blank">Terms of Use</a><span class="separator">&bull;</span><a href="http://wikimediafoundation.org/wiki/Wikimedia:General_disclaimer" target="_blank">Disclaimers</a><span class="separator">&bull;</span><a href="http://wikimediafoundation.org/wiki/Wikimedia:Privacy_policy" target="_blank">Privacy Policy</a>
+      </div><a href="http://mediawiki.org/wiki/Analytics" target="_blank" title="A product of Team Analytics at the Wikimedia Foundation" class="wmf-logo image">A product of Team Analytics at the Wikimedia Foundation
+</a>
+    </footer>
+    <div class="templates">
+      <script id="dashboard-tab" data-template-name="dashboard-tab" type="text/html">
+
+<section class="dashboard-tab">
+  <ol data-bind="foreach: { data:graphs, as:'graph' }">
+    <li data-bind="subview: graph">
+    </li>
+  </ol>
+</section>
+
+      </script>
+      <script id="dashboard" data-template-name="dashboard" type="text/html">
+
+<section class="dashboard">
+  <div class="page-header">
+    <h1><span data-bind="text: model().headline"></span> 
+<small data-bind="visible: model().subhead, text: model().subhead"></small>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="graphs tabbable">
+      <nav>
+        <ul class="nav subnav nav-pills">
+          <li>
+            <h3>Graphs
+            </h3>
+          </li>
+          <!-- ko foreach: { data:tabs, as:'tab' }-->
+          <li data-bind="css: tab.tabButtonCss" class="tab-button"><a data-toggle="tab" data-bind="attr: { href:'#' + tabId() + '-graphs-tab' }, text: tab.model().name"></a>
+          </li>
+          <!-- /ko-->
+        </ul>
+      </nav>
+      <div data-bind="foreach: { data:tabs, as:'tab' }" class="tab-content">
+        <div data-bind="attr: { id: tabId() + '-graphs-tab' }, css: tabPaneCss, subview: tab" class="tab-pane">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      </script>
+      <script id="datasources" data-template-name="datasources" type="text/html">
+
+<fieldset class="controlGroup">
+  <legend data-toggle="collapse" data-target="form.form-horizontal" class="accordion-toggle">Add New Data Source
+  </legend>
+  <form data-bind="submit: newDataSource, with: blankDataSource, css: { 'in': showAddForm, 'out': hideAddForm }" class="form-horizontal collapse">
+    <div class="control-group">
+      <label for="type" class="control-label">Type of File
+      </label>
+      <div class="controls">
+        <select id="type" data-bind="value: type" required="required">
+          <option value="timeseries">Timeseries
+          </option>
+          <option value="geojson">Geographical
+          </option>
+          <option value="series">Series
+          </option>
+        </select>
+      </div>
+    </div><!--
+    <div class="control-group">
+      <label for="format" class="control-label">Format of Data
+      </label>
+      <div class="controls">
+        <select id="format" data-bind="value: format" required="required">
+          <option value="csv">Comma Separated Values
+          </option>
+          <option value="tsv">Tab Separated Values
+          </option>
+          <option value="json">JSON
+          </option>
+          <option value="jsonp">JSONp
+          </option>
+          <option value="xml">XML
+          </option>
+          <option value="log">Custom format, gets Pre-Parsed
+          </option>
+        </select>
+      </div>
+    </div>-->
+    <div class="control-group">
+      <label for="url" class="control-label">Datafile URL
+      </label>
+      <div class="controls">
+        <input type="text" id="url" placeholder="relative or absolute url" data-bind="value: url" required="required"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="slug" class="control-label">Unique Id
+      </label>
+      <div class="controls">
+        <input type="text" id="slug" placeholder="unique id: must_look_like_this" data-bind="value: slug" required="required" pattern="^[a-z0-9_]+$"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="name" class="control-label">Name
+      </label>
+      <div class="controls">
+        <input type="text" id="name" placeholder="name" data-bind="value: name" required="required"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="shortName" class="control-label">Short Name
+      </label>
+      <div class="controls">
+        <input type="text" id="shortName" placeholder="short name" data-bind="value: shortName"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <h4>Metrics in Datafile
+      </h4><a data-bind="click: $parent.addMetric" class="btn">Add Metric</a>
+      <div data-bind="foreach: columns" class="control-group">
+        <div class="controls controls-row"><span data-bind="text: $index"></span>
+          <!-- ko if: $parent.type() == 'geojson'-->
+          <input type="text" required="required" placeholder="id" data-bind="value: id" class="span1"/>
+          <!-- /ko-->
+          <input type="text" required="required" placeholder="column heading" data-bind="value: label" class="span3"/>
+          <input type="text" required="required" placeholder="data type (int, Date, float)" data-bind="value: type" class="span2"/><a data-bind="click: $parents[1].removeMetricFrom($parent)" class="btn">Remove</a>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary save">Save
+      </button><span data-bind="text: $parent.message" class="pull-right"></span>
+    </div>
+  </form>
+</fieldset>
+<h3>Search Datasources
+</h3>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="navbar-search">
+      <input data-bind="value: filter" placeholder="filter by id or name" class="search-query datasourceSearch"/>
+    </div>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead data-bind="if: model().length == 0">
+    <tr>
+      <th>Loading all the datasources...
+      </th>
+    </tr>
+  </thead>
+  <tbody data-bind="foreach: filteredModel">
+    <tr>
+      <td><a data-bind="click: $parent.visualize" class="btn">Visualize</a>
+      </td>
+      <td><span data-bind="text: id"></span>
+      </td>
+      <td><span data-bind="text: name"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div data-backdrop="false" data-bind="if: visualizeDialog" class="modal hide visualizeDialog">
+  <div class="modal-header">
+    <button data-dismiss="modal" aria-hidden="true" class="close">&times;
+    </button>
+    <h3>Quick Peek
+    </h3>
+  </div>
+  <div class="modal-body">
+    <section data-bind="subview: visualizeDialog">
+    </section>
+  </div>
+  <div class="modal-footer"><a data-dismiss="modal" class="btn btn-primary">Close</a>
+  </div>
+</div>
+
+      </script>
+      <script id="edit" data-template-name="edit" type="text/html">
+
+<fieldset>
+  <legend>
+  </legend>
+  <ol data-bind="foreach: editable">
+    <li class="row-fluid">
+      <label data-bind="text: text" class="span4">
+      </label>
+      <input data-bind="value: value" class="span8"/>
+    </li>
+  </ol>
+</fieldset>
+
+      </script>
+      <script id="graph" data-template-name="graph" type="text/html">
+
+<section data-bind="attr: { id:graphId }" class="graph graph-display">
+  <div class="graph-name-row row-fluid">
+    <section class="callout">
+    </section>
+    <h2><a data-bind="text: model().name, attr: { href:model().link }" class="graph-name"></a>
+    </h2>
+  </div>
+  <div class="graph-canvas-row row-fluid">
+    <div class="inner">
+    </div>
+  </div>
+  <div class="graph-details-row row">
+    <div data-bind="html: model().desc" class="span7 offset3 ug graph-desc">
+    </div>
+  </div>
+  <div data-bind="if: model().permalink" class="graph-links-row row">
+    <div class="span6 offset3 ug graph-permalink">
+      <input data-bind="attr: { value:model().permalink }" readonly="readonly" class="span6"/>
+    </div>
+  </div>
+  <div class="graph-notes-row row">
+    <div data-bind="html: model().notes" class="span7 offset3 ug graph-notes">
+    </div>
+  </div>
+  <div class="graph-raw-data-row row">
+    <div class="span7 offset3 ug">
+      <h4>Raw Data used by this graph
+      </h4>
+      <ul data-bind="foreach: uniqueMetricDataLinks()">
+        <li><a data-bind="text: $data, attr: {href: $data}" target="_blank"></a>
+        </li>
+      </ul>
+    </div>
+    <button data-bind="click: tabularize" class="btn">See as a Table
+    </button>
+  </div>
+</section>
+<div data-backdrop="false" data-bind="if: tabularizeDialog" class="modal hide tabularizeDialog">
+  <div class="modal-header">
+    <button data-dismiss="modal" aria-hidden="true" class="close">&times;
+    </button>
+    <h3>See as a Table
+    </h3>
+  </div>
+  <div class="modal-body">
+    <section data-bind="subview: tabularizeDialog">
+    </section>
+  </div>
+  <div class="modal-footer"><a data-dismiss="modal" class="btn btn-primary">Close</a>
+  </div>
+</div>
+
+      </script>
+      <script id="loading" data-template-name="loading" type="text/html">
+
+<p>Loading...
+</p>
+
+      </script>
+      <script id="callout-node" data-template-name="callout-node" type="text/html">
+
+<div data-bind="text: latestValue" class="latest-metric">
+</div>
+<div class="metric-change year-over-year"><span data-bind="html: yearDates" class="dates"></span><span data-bind="text: yearValue, css:yearCssClass" class="value"></span>
+</div>
+<div class="metric-change month-over-month"><span data-bind="html: monthDates" class="dates"></span><span data-bind="text: monthValue, css:monthCssClass" class="value"></span>
+</div>
+
+      </script>
+      <script id="canvas-node" data-template-name="canvas-node" type="text/html">
+
+<section class="canvas-node graph-node">
+  <section class="meta fg">
+  </section>
+  <section class="chart">
+    <svg pointer-events="all" data-bind="attr: { width:frameWidth, height:frameHeight }">
+      <defs>
+        <clipPath data-bind="attr: { id:&quot;clip-&quot;+graphId }">
+          <rect data-bind="attr: { width: clipWidth, height:clipHeight }">
+          </rect>
+        </clipPath>
+        <g class="metricDefs">
+        </g>
+      </defs>
+      <g data-bind="attr: { transform:&quot;translate(&quot;+margin.left+&quot;,&quot;+margin.top+&quot;)&quot; }" class="margin-frame">
+        <g class="frame">
+          <g data-bind="attr: { &quot;clip-path&quot;:&quot;url(#clip-&quot;+graphId+&quot;)&quot; }" class="content-frame">
+            <g class="bg">
+              <rect data-bind="attr: { width: clipWidth, height:clipHeight }" class="bgcolor">
+              </rect>
+            </g>
+            <g class="viewport">
+            </g>
+          </g>
+          <g class="fg">
+          </g>
+        </g>
+      </g>
+    </svg>
+  </section>
+  <section class="meta bg">
+  </section>
+</section>
+
+      </script>
+      <script id="infobox-node" data-template-name="infobox-node" type="text/html">
+
+<h3 data-bind="visible: label, text: label" class="infobox-label">
+</h3>
+<table class="table">
+  <tbody data-bind="foreach: { data:entries, as:'entry' }">
+    <tr data-bind="attr: { id: 'infobox-entry-' + entry.nodeId() }" class="infobox-entry">
+      <td data-bind="text: entry.label" class="entry-label">
+      </td>
+      <td data-bind="text: entry.value" class="entry-value">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+      </script>
+      <script id="legend-node" data-template-name="legend-node" type="text/html">
+
+<fieldset>
+  <legend data-bind="visible: label, text: label">
+  </legend>
+  <ul data-bind="foreach: { data:entries, as:'entry' }">
+    <li data-bind="attr: { id:entry.nodeId }" class="legend-entry"><span data-bind="text: entry.label, style: { color:entry.color }" class="entry-label"></span><span data-bind="html: entry.value" class="entry-value"></span>
+    </li>
+  </ul>
+</fieldset>
+
+      </script>
+      <script id="smooth-node" data-template-name="smooth-node" type="text/html">
+<span>Smooth the graph by averaging out&nbsp;</span>
+<input type="number" data-bind="value: factor" min="1" max="1000"/><span>&nbsp;datapoint</span><span data-bind="if: factor() &gt; 1">s</span>
+
+      </script>
+      <script id="notFound" data-template-name="notFound" type="text/html">
+
+<p data-bind="text: message">
+</p>
+
+      </script>
+      <script id="table" data-template-name="table" type="text/html">
+
+<section class="table-view">
+  <div class="graph-name-row row-fluid">
+    <h2 data-bind="text: model().name">
+    </h2>
+  </div>
+  <div class="graph-canvas-row row-fluid">
+    <div class="inner">
+      <table class="table table-striped">
+        <thead>
+          <tr data-bind="foreach: tableColumns">
+            <th data-bind="text: label">
+            </th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: tableRows">
+          <tr data-bind="foreach: $data">
+            <td data-bind="html: $data">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="graph-details-row row">
+    <div data-bind="html: model().desc" class="span7 offset3 ug graph-desc">
+    </div>
+  </div>
+  <div class="graph-notes-row row">
+    <div data-bind="html: model().notes" class="span7 offset3 ug graph-notes">
+    </div>
+  </div>
+</section>
+
+      </script>
+    </div>
+    <div class="scripts">
+      <script>var VERSION     = "1360855188709";
+var ENV         = "development";
+var IS_DEV      = ENV === 'development';
+var IS_PROD     = ENV === 'production';
+var limn_config = {"mount":"/","rev":"1360855188709","env":"development"};
+
+</script>
+      <script src="/vendor/es5-shim.min.js"></script>
+      <script src="/vendor/jquery.js"></script>
+      <script src="/vendor/bootstrap.min.js"></script>
+      <script src="/vendor/knockout-2.2.0.js"></script>
+      <script src="/vendor/d3.v3.js"></script>
+      <script src="/vendor/browserify.js"></script>
+      <script src="/vendor/underscore.string.mod.js"></script>
+      <script src="/vendor/colorbrewer.mod.js"></script>
+      <script src="/vendor/showdown.mod.js"></script>
+      <script src="/vendor/moment.mod.js"></script>
+      <script src="/vendor/page.mod.js"></script>
+      <script src="/js/limn/index.mod.js"></script>
+      <script src="/js/limn/base/attributes-base.mod.js"></script>
+      <script src="/js/limn/base/attributes-mixin.mod.js"></script>
+      <script src="/js/limn/base/base.mod.js"></script>
+      <script src="/js/limn/base/model-cache.mod.js"></script>
+      <script src="/js/limn/base/model.mod.js"></script>
+      <script src="/js/limn/base/resource.mod.js"></script>
+      <script src="/js/limn/base/stored-model.mod.js"></script>
+      <script src="/js/limn/base/view.mod.js"></script>
+      <script src="/js/limn/base/index.mod.js"></script>
+      <script src="/js/limn/dashboard/dashboard-model.mod.js"></script>
+      <script src="/js/limn/dashboard/dashboard-tab-model.mod.js"></script>
+      <script src="/js/limn/dashboard/dashboard-tab-view.mod.js"></script>
+      <script src="/js/limn/dashboard/dashboard-view.mod.js"></script>
+      <script src="/js/limn/dashboard/index.mod.js"></script>
+      <script src="/js/limn/data/graph-json-converter.mod.js"></script>
+      <script src="/js/limn/data/index.mod.js"></script>
+      <script src="/js/limn/data/dataset/dataset.mod.js"></script>
+      <script src="/js/limn/data/dataset/geo-json-dataset.mod.js"></script>
+      <script src="/js/limn/data/dataset/series-dataset.mod.js"></script>
+      <script src="/js/limn/data/dataset/timeseries-dataset.mod.js"></script>
+      <script src="/js/limn/data/dataset/topo-json-dataset.mod.js"></script>
+      <script src="/js/limn/data/dataset/index.mod.js"></script>
+      <script src="/js/limn/data/datasource/datasource-cache.mod.js"></script>
+      <script src="/js/limn/data/datasource/datasource-view.mod.js"></script>
+      <script src="/js/limn/data/datasource/datasource.mod.js"></script>
+      <script src="/js/limn/data/datasource/index.mod.js"></script>
+      <script src="/js/limn/data/metric/geo-feature-metric.mod.js"></script>
+      <script src="/js/limn/data/metric/geo-map-metric.mod.js"></script>
+      <script src="/js/limn/data/metric/metric.mod.js"></script>
+      <script src="/js/limn/data/metric/timeseries-metric.mod.js"></script>
+      <script src="/js/limn/data/metric/index.mod.js"></script>
+      <script src="/js/limn/edit/edit-view.mod.js"></script>
+      <script src="/js/limn/edit/index.mod.js"></script>
+      <script src="/js/limn/graph/graph-display-view.mod.js"></script>
+      <script src="/js/limn/graph/graph-edit-view.mod.js"></script>
+      <script src="/js/limn/graph/graph-model.mod.js"></script>
+      <script src="/js/limn/graph/graph-view.mod.js"></script>
+      <script src="/js/limn/graph/project-colors.mod.js"></script>
+      <script src="/js/limn/graph/table-view.mod.js"></script>
+      <script src="/js/limn/graph/index.mod.js"></script>
+      <script src="/js/limn/graph/node/canvas-node.mod.js"></script>
+      <script src="/js/limn/graph/node/canvas-series-node.mod.js"></script>
+      <script src="/js/limn/graph/node/graph-node-data.mod.js"></script>
+      <script src="/js/limn/graph/node/graph-node-trait.mod.js"></script>
+      <script src="/js/limn/graph/node/graph-node.mod.js"></script>
+      <script src="/js/limn/graph/node/group-node.mod.js"></script>
+      <script src="/js/limn/graph/node/node-mixin.mod.js"></script>
+      <script src="/js/limn/graph/node/node-options.mod.js"></script>
+      <script src="/js/limn/graph/node/viewport-node.mod.js"></script>
+      <script src="/js/limn/graph/node/index.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/axis-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/callout-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/grid-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/guide-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/infobox-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/legend-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/smooth-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/zoom-brush-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/zoom-pan-node.mod.js"></script>
+      <script src="/js/limn/graph/node/meta/index.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/annotation-group-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/annotation-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/bar-group-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/bar-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/geo-feature-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/geo-map-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/line-group-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/line-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/series-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/timeseries-node.mod.js"></script>
+      <script src="/js/limn/graph/node/vis/index.mod.js"></script>
+      <script src="/js/limn/util/crc.mod.js"></script>
+      <script src="/js/limn/util/emitters.mod.js"></script>
+      <script src="/js/limn/util/formatters.mod.js"></script>
+      <script src="/js/limn/util/guid.mod.js"></script>
+      <script src="/js/limn/util/iterator.mod.js"></script>
+      <script src="/js/limn/util/markdown.mod.js"></script>
+      <script src="/js/limn/util/mixin.mod.js"></script>
+      <script src="/js/limn/util/query.mod.js"></script>
+      <script src="/js/limn/util/type-cache.mod.js"></script>
+      <script src="/js/limn/util/index.mod.js"></script>
+      <script src="/js/limn/util/collections/aliasdict.mod.js"></script>
+      <script src="/js/limn/util/collections/cascade.mod.js"></script>
+      <script src="/js/limn/util/collections/change.mod.js"></script>
+      <script src="/js/limn/util/collections/ordered-map.mod.js"></script>
+      <script src="/js/limn/util/collections/ordered-set.mod.js"></script>
+      <script src="/js/limn/util/collections/index.mod.js"></script>
+      <script src="/js/limn/util/knockout/add-extender.mod.js"></script>
+      <script src="/js/limn/util/knockout/async-computed-observable.mod.js"></script>
+      <script src="/js/limn/util/knockout/markdown-extender.mod.js"></script>
+      <script src="/js/limn/util/knockout/observable-array.mod.js"></script>
+      <script src="/js/limn/util/knockout/observable-history.mod.js"></script>
+      <script src="/js/limn/util/knockout/observable-map.mod.js"></script>
+      <script src="/js/limn/util/knockout/observable-set.mod.js"></script>
+      <script src="/js/limn/util/knockout/observables-array-ext.mod.js"></script>
+      <script src="/js/limn/util/knockout/observables-array.mod.js"></script>
+      <script src="/js/limn/util/knockout/observables.mod.js"></script>
+      <script src="/js/limn/util/knockout/subscribable.mod.js"></script>
+      <script src="/js/limn/util/knockout/subview-binding.mod.js"></script>
+      <script src="/js/limn/util/knockout/typed-observable.mod.js"></script>
+      <script src="/js/limn/util/knockout/index.mod.js"></script>
+      <script src="/js/limn/util/parse/parsers.mod.js"></script>
+      <script src="/js/limn/util/parse/parsing-mixin.mod.js"></script>
+      <script src="/js/limn/util/parse/index.mod.js"></script>
+      <script src="/js/limn/util/underscore/array.mod.js"></script>
+      <script src="/js/limn/util/underscore/class.mod.js"></script>
+      <script src="/js/limn/util/underscore/dom.mod.js"></script>
+      <script src="/js/limn/util/underscore/function.mod.js"></script>
+      <script src="/js/limn/util/underscore/knockout.mod.js"></script>
+      <script src="/js/limn/util/underscore/object.mod.js"></script>
+      <script src="/js/limn/util/underscore/string.mod.js"></script>
+      <script src="/js/limn/util/underscore/index.mod.js"></script>
+      <script>var limn = require('limn');
+</script>
+    </div>
+    <div class="rilke">
+      <blockquote>
+        <p>What we fight with is so small, and when we win, it makes us small.
+        </p>
+        <p>What we want is to be defeated, decisively, by successively greater things.
+        </p><small>Rainer Rilke</small>
+      </blockquote>
+    </div>
+  </body>
+</html>

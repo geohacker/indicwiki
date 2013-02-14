@@ -10,7 +10,6 @@ Phase 1 - Basic Parameters
 * Number of edits.
 * Number of new editors.
 * Number of articles.
-
 * Number of new articles.
 * Number of page views.
 * Number of user accounts.
