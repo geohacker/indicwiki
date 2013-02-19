@@ -93,7 +93,7 @@ var color = d3.scale.quantize()
 
 	createTiles();
 
-	d3.csv('http://raw.github.com/geohacker/indicwiki/gh-pages/data/active_editors_2012.csv', function(csv) {
+	d3.csv('/indicwiki/data/active_editors_2012.csv', function(csv) {
 		data = csv;
 		updateTiles();
 	});
