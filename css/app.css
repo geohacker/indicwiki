@@ -63,3 +63,28 @@ body {
     background-image: linear-gradient(to bottom, #751cdc, #3d0f73);
     background-repeat: repeat-x;
   }*/
+
+
+/* Styles for Calendar */
+
+  body th{
+    font-size: 10px;
+  }
+
+  #tiles .tile {
+    height: 25px;
+    position: relative;
+    width: 25px;
+  }
+
+  .RdYlGn .q0-11{background:rgb(165,0,38)}
+  .RdYlGn .q1-11{background:rgb(215,48,39)}
+  .RdYlGn .q2-11{background:rgb(244,109,67)}
+  .RdYlGn .q3-11{background:rgb(253,174,97)}
+  .RdYlGn .q4-11{background:rgb(254,224,139)}
+  .RdYlGn .q5-11{background:rgb(255,255,191)}
+  .RdYlGn .q6-11{background:rgb(217,239,139)}
+  .RdYlGn .q7-11{background:rgb(166,217,106)}
+  .RdYlGn .q8-11{background:rgb(102,189,99)}
+  .RdYlGn .q9-11{background:rgb(26,152,80)}
+  .RdYlGn .q10-11{background:rgb(0,104,55)}

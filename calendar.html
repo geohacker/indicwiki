@@ -1,146 +1,160 @@
 <html>
 <head>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+
 </head>
 <body>
-	<style type="text/css">
-	#tiles .tile {
-		height: 38px;
-		position: relative;
-		width: 38px;
-	}
+	<div class="container">
 
-.RdYlGn .q0-11{background:rgb(165,0,38)}
-.RdYlGn .q1-11{background:rgb(215,48,39)}
-.RdYlGn .q2-11{background:rgb(244,109,67)}
-.RdYlGn .q3-11{background:rgb(253,174,97)}
-.RdYlGn .q4-11{background:rgb(254,224,139)}
-.RdYlGn .q5-11{background:rgb(255,255,191)}
-.RdYlGn .q6-11{background:rgb(217,239,139)}
-.RdYlGn .q7-11{background:rgb(166,217,106)}
-.RdYlGn .q8-11{background:rgb(102,189,99)}
-.RdYlGn .q9-11{background:rgb(26,152,80)}
-.RdYlGn .q10-11{background:rgb(0,104,55)}
+		<div class="row-fluid">
+			<div class="span6">
+				<div id="vis2001"></div>
+			</div>
+			<div class="span6">
+				<div id="vis2002"></div>
+			</div>
+		</div>
 
-	</style>
+		<div class="row-fluid">
+			<div class="span6">
+				<div id="vis2003"></div>
+			</div>
+			<div class="span6">
+				<div id="vis2004"></div>
+				</div>
+			</div>
 
-	<div id="vis"></div>
-	<script>
+			<div class="row-fluid">
+				<div class="span6">
 
-var color = d3.scale.quantize()
-    .domain([0, 100])
-    .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+					<div id="vis2005"></div>
+				</div>
+				<div class="span6">
 
-	colors = d3.scale.category20c();
-	var languages = ['hi','bn','mr','te','ta','ur','kn','gu','sd','bh','ml','or','pa','as','new','ks','ne','bpy','sa','pi'];
-	var months = [{name: 'January', code: 'jan'},
-	{name: 'February', code: 'feb'},
-	{name: 'March', code: 'mar'},
-	{name: 'April', code: 'apr'},
-	{name: 'May', code: 'may'},
-	{name: 'June', code: 'jun'},
-	{name: 'July', code: 'jul'},
-	{name: 'August', code: 'aug'},
-	{name: 'September', code: 'sep'},
-	{name: 'October', code: 'oct'},
-	{name: 'November', code: 'nov'},
-	{name: 'December', code: 'dec'}];
+					<div id="vis2006"></div>
+				</div>
+			</div>
 
-	var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'];
+			<div class="row-fluid">
+				<div class="span6">
 
-	var	days = [
-	{ name: 'Monday', abbr: 'Mo' },
-	{ name: 'Tuesday', abbr: 'Tu' },
-	{ name: 'Wednesday', abbr: 'We' },
-	{ name: 'Thursday', abbr: 'Th' },
-	{ name: 'Friday', abbr: 'Fr' },
-	{ name: 'Saturday', abbr: 'Sa' },
-	{ name: 'Sunday', abbr: 'Su' }];
+					<div id="vis2007"></div>
+				</div>
+				<div class="span6">
 
-	var data;
+					<div id="vis2008"></div>
+				</div>
+			</div>
 
-	// var color = d3.scale.quantize()
-	// .domain([30.0, 80.0])
-	// .range(d3.range(12).map(function(d) { return "q" + d + "-12"; }));
-// 	function quantize(d) {
-//     color = "q" + Math.min(7, ~~(d / 20)) + "-9";
-//     return color;
-// }
-	function createTiles() {
+			<div class="row-fluid">
+				<div class="span6">
 
-		var html = '<table id="tiles" class="front">';
+					<div id="vis2009"></div>
+				</div>	
+				<div class="span6">
+					<div id="vis2010"></div>
+				</div>
+			</div>
 
-		html += '<tr><th><div>&nbsp;</div></th>';
+			<div class="row-fluid">
+				<div class="span6">
 
-		for (var l = 0; l < languages.length; l++) {
-			html += '<th class="h' + languages[l] + '">' + languages[l] + '</th>';
-		}
+					<div id="vis2011"></div>
+				</div>
+				<div class="span6">
 
-		html += '</tr>';
+					<div id="vis2012"></div>
+				</div>
+			</div>
 
-		for (var m = 0; m < months.length; m++) {
-			html += '<tr class="'+months[m].code+'">';
-			html += '<th>' + months[m].code + '</th>';
+		</div>
+
+		<script>
+
+		var color = d3.scale.quantize()
+		.domain([0, 100])
+		.range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+
+		colors = d3.scale.category20c();
+		var languages = ['hi','bn','mr','te','ta','ur','kn','gu','sd','bh','ml','or','pa','as','new','ks','ne','bpy','sa','pi'];
+
+		var months = [{name: 'January', code: 'jan'},
+		{name: 'February', code: 'feb'},
+		{name: 'March', code: 'mar'},
+		{name: 'April', code: 'apr'},
+		{name: 'May', code: 'may'},
+		{name: 'June', code: 'jun'},
+		{name: 'July', code: 'jul'},
+		{name: 'August', code: 'aug'},
+		{name: 'September', code: 'sep'},
+		{name: 'October', code: 'oct'},
+		{name: 'November', code: 'nov'},
+		{name: 'December', code: 'dec'}];
+
+		var years = ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+
+		var data;
+		var format = d3.time.format("%Y/%m/%d")
+
+		function createTiles(year) {
+			var title = "<p>"+year+"</p>"
+			var html = title+'<table id="tiles" class="front">';
+
+			html += '<tr><th><div>&nbsp;</div></th>';
+
 			for (var l = 0; l < languages.length; l++) {
-				html += '<td id="' + months[m].code + languages[l] + '" class=" RdYlGn d' + m + ' h' + l + '"><div class="tile"></div></td>';
+				html += '<th class="h' + languages[l] + '">' + languages[l] + '</th>';
 			}
+
 			html += '</tr>';
+
+			for (var m = 0; m < months.length; m++) {
+				html += '<tr class="'+months[m].code+'">';
+				html += '<th>' + months[m].code + '</th>';
+				for (var l = 0; l < languages.length; l++) {
+					html += '<td id="' + months[m].code + languages[l] + '" class=" RdYlGn d' + m + ' h' + l + '"><div class="tile"></div></td>';
+				}
+				html += '</tr>';
+			}
+
+			html += '</table>';
+
+			d3.select('#vis'+year).html(html);
 		}
 
-		html += '</table>';
-		d3.select('#vis').html(html);
-	}
+		d3.csv('/data/very_active_editors.csv', function(csv) {
+			data = csv;
+			initialize();
+		});
 
-	createTiles();
+		function filterYear(year) {
+			return (function(d) {return (format.parse(d.date).getFullYear() == year);});
+		}
 
-	d3.csv('/data/active_editors_2012.csv', function(csv) {
-		data = csv;
-		updateTiles();
-	});
 
-	function updateTiles() {
+		function initialize() {
+			for (var i=(years.length-1); i>=0; i--) {
+				yearData = data.filter(filterYear(years[i]));
+				createTiles(years[i]);
+				updateTiles(yearData, years[i]);
+			}
+		}
+		function updateTiles(yearData, year) {
 
 			for (var m = 0; m < months.length; m++) {
 
 				for (var l = 0; l < languages.length; l++) {
-					// console.log(data[m][languages[l]]);
-					var tileColor = colors(data[m][languages[l]]);
-					colorbrew = console.log(color(data[m][languages[l]]));
-					var sel = '#'+months[m].code+languages[l]+' .tile';
+					var tileColor = color(yearData[m][languages[l]]);
+					var sel = '#vis'+year+' #'+months[m].code+languages[l]+' .tile';
 					selected = d3.select(sel);
-					// console.log(colorbrew, selected);
-					// selected.style('background', tileColor);
-					selected.classed(color(data[m][languages[l]]), true);
+					selected.classed(tileColor, true);
+				}
 			}
+
 		}
-
-	// 	html += '</table>';
-	// 	d3.select('#vis').html(html);
-
-	// 	for (var m=0; m<)
-	// 	for (var d = 0; d < data[state].views.length; d++) {
-	// 		for (var h = 0; h < data[state].views[d].length; h++) {
-
-	// 			var sel = '#d' + d + 'h' + h + ' .tile .' + side,
-	// 			val = data[state].views[d][h].pc + data[state].views[d][h].mob;
-
-	// 			if (view !== 'all') {
-	// 				val = data[state].views[d][h][view];
-	// 			}
-
-	// 		// erase all previous bucket designations on this cell
-	// 		for (var i = 1; i <= buckets; i++) {
-	// 			var cls = 'q' + i + '-' + buckets;
-	// 			d3.select(sel).classed(cls , false);
-	// 		}
-			
-	// 		// set new bucket designation for this cell
-	// 		var cls = 'q' + (val > 0 ? bucket(val) : 0) + '-' + buckets;
-	// 		d3.select(sel).classed(cls, true);
-	// 	}
-	// }
-
-}
-</script>
-</body>
-</html>
+		</script>
+	</body>
+	</html>
