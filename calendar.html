@@ -125,7 +125,7 @@
 			d3.select('#vis'+year).html(html);
 		}
 
-		d3.csv('/data/very_active_editors.csv', function(csv) {
+		d3.csv('indicwiki/data/very_active_editors.csv', function(csv) {
 			data = csv;
 			initialize();
 		});
