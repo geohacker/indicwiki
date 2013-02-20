@@ -72,9 +72,9 @@ body {
   }
 
   #tiles .tile {
-    height: 25px;
+    height: 47px;
     position: relative;
-    width: 25px;
+    width: 47px;
   }
 
   .RdYlGn .q0-11{background:rgb(165,0,38)}
