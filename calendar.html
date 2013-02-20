@@ -134,6 +134,10 @@
 			return (function(d) {return (format.parse(d.date).getFullYear() == year);});
 		}
 
+	d3.csv('/indicwiki/data/active_editors_2012.csv', function(csv) {
+		data = csv;
+		updateTiles();
+	});
 
 		function initialize() {
 			for (var i=(years.length-1); i>=0; i--) {
