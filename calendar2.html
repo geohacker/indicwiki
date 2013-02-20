@@ -2,29 +2,35 @@
 <head>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<!-- <link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 	<link href="css/app.css" rel="stylesheet">
-	 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 
 </head>
 <body>
 	<div class="container">
 
 		<div class="row-fluid">
-			<div class="span10">
+			<div class="span12">
 				<div id="vis"></div>
 			</div>
 		</div>
 
-		<div class="row-fluid">
-			<button id="start" class="btn btn-primary">Play</button>
-			<div id="year"></div>
+		<div class="row-fluid" id="controls">
+			<div class="span1">
+			<button id="start" class="btn"><i class="icon-play"></i></button>
+		</div>
+			<div class="span1">
+				<div id="year"></div>
+			</div>
+
 			<div class="span10">
-			<div id="slider"></div>
+				<div id="slider"></div>
+			</div>
 		</div>
-		</div>
+
 		<script>
 
 		var color = d3.scale.quantize()
@@ -97,7 +103,7 @@
 			d3.select('#vis').html(html);
 		}
 
-		d3.csv('/data/very_active_editors.csv', function(csv) {
+		d3.csv('/indicwiki/data/very_active_editors.csv', function(csv) {
 			data = csv;
 			// initialize();
 		});
@@ -114,7 +120,7 @@
 		// 	}
 		// }
 		function updateTiles(year) {
-						createTiles();
+			createTiles();
 
 			yearData = data.filter(filterYear(year));
 
@@ -132,32 +138,33 @@
 		}
 
 
-var start = d3.select("#start");
-start.on("click", play);
-var i=0;
+		var start = d3.select("#start");
+		start.on("click", play);
+		var i=0;
 
-function play() {
-  d3.select(".play").classed("btn-primary", false);
-  start.on("click", null);
-  updateTiles(years[i]);
-  setTimeout(update_year, 1000);
+		function play() {
+			d3.select(".play").classed("btn-primary", false);
+			start.on("click", null);
+			updateTiles(years[i]);
+			setTimeout(update_year, 1000);
 
-};
+		};
 
-function update_year() {
-  i = i+1;
-  if (i!=years.length) {
-    play();
-  }
-  else {
-    i=0;
-    d3.select(".play").classed("btn-primary", true);
-    start.on("click", play);
-  }
-}
- $(function() {
-$( "#slider" ).slider({min:0, max:11, change:function(event, ui){ var year = years[ui.value]; updateTiles(year);}});
-});
+		function update_year() {
+			i = i+1;
+			if (i!=years.length) {
+				play();
+				$("#slider").slider("value", i);
+			}
+			else {
+				i=0;
+				d3.select(".play").classed("btn-primary", true);
+				start.on("click", play);
+			}
+		}
+		$(function() {
+			$( "#slider" ).slider({min:0, max:11, change:function(event, ui){ var year = years[ui.value]; updateTiles(year);}});
+		});
 
 		</script>
 	</body>

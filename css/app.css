@@ -6,7 +6,6 @@ body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
-
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -58,6 +57,23 @@ body {
   line-height: 70px;
 }
 
+#controls {
+  margin-top: 25px;
+}
+
+#controls #slider{
+  padding-top: 10px;
+}
+
+button#start{
+  width: 30px;
+  height: 25px;
+  float: right;
+}
+
+.ui-slider .ui-slider-handle {
+  height: 1.9em;
+}
 /*.navbar-inner {
     background-color: #150528;
     background-image: linear-gradient(to bottom, #751cdc, #3d0f73);
@@ -72,9 +88,9 @@ body {
   }
 
   #tiles .tile {
-    height: 47px;
+    height: 30px;
     position: relative;
-    width: 47px;
+    width: 45px;
   }
 
   .RdYlGn .q0-11{background:rgb(165,0,38)}
