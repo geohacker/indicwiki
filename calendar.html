@@ -79,7 +79,26 @@
 		.range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
 		colors = d3.scale.category20c();
-		var languages = ['hi','bn','mr','te','ta','ur','kn','gu','sd','bh','ml','or','pa','as','new','ks','ne','bpy','sa','pi'];
+		var languages = [{name:'Hindi', code:'hi'},
+		{name:'Bengali', code:'bn'},
+		{name:'Marathi', code:'mr'},
+		{name: 'Telugu', code:'te'},
+		{name: 'Tamil', code:'ta'},
+		{name: 'Urdu', code:'ur'},
+		{name: 'Kannada', code:'kn'},
+		{name: 'Gujarati', code:'gu'},
+		{name: 'Sindhi', code:'sd'},
+		{name: 'Bhojpuri', code:'bh'},
+		{name: 'Malayalam', code:'ml'},
+		{name: 'Oriya', code:'or'},
+		{name: 'Punjabi', code:'pa'},
+		{name: 'Assamese', code:'as'},
+		{name: 'Newari', code:'new'},
+		{name: 'Kashmiri', code:'ks'},
+		{name: 'Nepali', code:'ne'},
+		{name: 'Bishnupriya', code:'bpy'},
+		{name: 'Sanskrit', code:'sa'},
+		{name: 'Pali', code:'pi'}];
 
 		var months = [{name: 'January', code: 'jan'},
 		{name: 'February', code: 'feb'},
@@ -106,7 +125,7 @@
 			html += '<tr><th><div>&nbsp;</div></th>';
 
 			for (var l = 0; l < languages.length; l++) {
-				html += '<th class="h' + languages[l] + '">' + languages[l] + '</th>';
+				html += '<th class="h' + languages[l].code + '">' + languages[l].code + '</th>';
 			}
 
 			html += '</tr>';
@@ -115,7 +134,7 @@
 				html += '<tr class="'+months[m].code+'">';
 				html += '<th>' + months[m].code + '</th>';
 				for (var l = 0; l < languages.length; l++) {
-					html += '<td id="' + months[m].code + languages[l] + '" class=" RdYlGn d' + m + ' h' + l + '"><div class="tile"></div></td>';
+					html += '<td id="' + months[m].code + languages[l].code + '" class=" RdYlGn d' + m + ' h' + l + '"><div class="tile"></div></td>';
 				}
 				html += '</tr>';
 			}
@@ -146,8 +165,8 @@
 			for (var m = 0; m < months.length; m++) {
 
 				for (var l = 0; l < languages.length; l++) {
-					var tileColor = color(yearData[m][languages[l]]);
-					var sel = '#vis'+year+' #'+months[m].code+languages[l]+' .tile';
+					var tileColor = color(yearData[m][languages[l].code]);
+					var sel = '#vis'+year+' #'+months[m].code+languages[l].code+' .tile';
 					selected = d3.select(sel);
 					selected.classed(tileColor, true);
 				}
