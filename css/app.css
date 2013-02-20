@@ -92,12 +92,14 @@ button#start{
     height: 25px;
     position: relative;
     width: 25px;
+    border-radius: 4px;
   }
 
 #calendar2  #tiles .tile {
     height: 30px;
     position: relative;
     width: 45px;
+    border-radius: 8px;
   }
 
   .RdYlGn .q0-11{background:rgb(165,0,38)}
