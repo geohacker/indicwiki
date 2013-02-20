@@ -87,7 +87,14 @@ button#start{
     font-size: 10px;
   }
 
-  #tiles .tile {
+
+#calendar  #tiles .tile {
+    height: 25px;
+    position: relative;
+    width: 25px;
+  }
+
+#calendar2  #tiles .tile {
     height: 30px;
     position: relative;
     width: 45px;
