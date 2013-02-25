@@ -107,7 +107,7 @@
 			d3.select('#vis').html(html);
 		}
 
-		d3.csv('/indicwiki/data/very_active_editors.csv', function(csv) {
+		d3.csv('/indicwiki/data/new_editors.csv', function(csv) {
 			data = csv;
 			initialize();
 		});
