@@ -10,24 +10,6 @@
 	<div class="container" id="calendar">
 		<div class="row-fluid">
 			<h1 class="text-center">Indic Wikipedia: Active Editors</h1>
-
-			<div class="span3 offset4">
-				<div id="legend">
-					<ul class="RdYlGn">
-						<li class="q0-11"></li>
-						<li class="q2-11"></li>
-						<li class="q3-11"></li>
-						<li class="q5-11"></li>
-						<li class="q7-11"></li>
-						<li class="q8-11"></li>
-						<li class="q9-11"></li>
-						<li class="q10-11"></li>
-					</ul>
-					<p class="less">0-10</p>
-					<p class="middle">40-60</p>
-					<p class="more">100-155</p>
-				</div>
-			</div>
 		</div>
 
 		<div class="row-fluid">
@@ -97,7 +79,7 @@
 
 	var color = d3.scale.quantize()
 	.domain([0, 100])
-	.range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+	.range(d3.range(9).map(function(d) { return "q" + d + "-9"; }));
 
 	colors = d3.scale.category20c();
 	var languages = [{name:'Hindi', code:'hi'},
@@ -140,7 +122,7 @@
 	var format = d3.time.format("%Y/%m/%d")
 
 	function createTiles(year) {
-		var title = "<p class='year text-center'>"+year+"</p>"
+		var title = "<p>"+year+"</p>"
 		var html = title+'<table id="tiles" class="front">';
 
 		html += '<tr><th><div>&nbsp;</div></th>';
@@ -155,7 +137,7 @@
 			html += '<tr class="'+months[m].code+'">';
 			html += '<th>' + months[m].code + '</th>';
 			for (var l = 0; l < languages.length; l++) {
-				html += '<td id="' + months[m].code + languages[l].code + '" class=" RdYlGn d' + m + ' h' + l + '"><div class="tile"></div></td>';
+				html += '<td id="' + months[m].code + languages[l].code + '" class=" Greens d' + m + ' h' + l + '"><div class="tile"></div></td>';
 			}
 			html += '</tr>';
 		}
@@ -165,7 +147,7 @@
 		d3.select('#vis'+year).html(html);
 	}
 
-	d3.csv('/indicwiki/data/active_editors.csv', function(csv) {
+	d3.csv('/indicwiki/data/num_articles.csv', function(csv) {
 		data = csv;
 		initialize();
 	});

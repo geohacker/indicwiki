@@ -123,3 +123,55 @@ button#start{
 .Greens .q6-9{background:rgb(35,139,69)}
 .Greens .q7-9{background:rgb(0,109,44)}
 .Greens .q8-9{background:rgb(0,68,27)}
+
+.year {
+  font-size: 20px;
+  margin-top: 25px;
+}
+
+#legend {
+    /*background: none repeat scroll 0 0 #F3F3F3;*/
+    /*border: 1px solid #F0F0F0;*/
+    /*border-radius: 6px 6px 6px 6px;*/
+    clear: both;
+    color: #777777;
+    font-size: 11px;
+    line-height: 11px;
+    /*margin: 10px 24px;*/
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding: 5px 5px;
+    width: 195px;
+}
+
+#legend ul {
+  list-style-type: none;
+  overflow: hidden;
+  clear: both;
+}
+
+#legend li {
+  float: left;
+  margin-right: 1px;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+#legend p {
+  margin-top: 3px;
+}
+
+#legend p.more {
+  float: right;
+}
+
+#legend p.middle {
+  float: left;
+  margin-left: 50px;
+}
+
+#legend p.less {
+  float: left;
+  margin-left: 20px;
+}
