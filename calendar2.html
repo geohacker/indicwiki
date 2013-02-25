@@ -13,7 +13,24 @@
 <body>
 	<div class="container" id="calendar2">
 		<div class="row-fluid">
-			<h1 class="text-center">Indic Wikipedia: Active Editors</h1>
+			<h1 class="text-center">Indic Wikipedia: Growth of Article Base</h1>
+						<div class="span3 offset4">
+				<div id="legend">
+					<ul class="RdYlGn">
+						<li class="q0-11"></li>
+						<li class="q2-11"></li>
+						<li class="q3-11"></li>
+						<li class="q5-11"></li>
+						<li class="q7-11"></li>
+						<li class="q8-11"></li>
+						<li class="q9-11"></li>
+						<li class="q10-11"></li>
+					</ul>
+					<p class="less">0-10</p>
+					<p class="middle">&gt;45</p>
+					<p class="more">&gt;100</p>
+				</div>
+			</div>
 		</div>
 
 		<div class="row-fluid">
@@ -107,7 +124,7 @@
 			d3.select('#vis').html(html);
 		}
 
-		d3.csv('/indicwiki/data/very_active_editors.csv', function(csv) {
+		d3.csv('/indicwiki/data/num_articles.csv', function(csv) {
 			data = csv;
 			initialize();
 		});
