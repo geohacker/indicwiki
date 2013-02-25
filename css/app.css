@@ -102,6 +102,10 @@ button#start{
     border-radius: 8px;
   }
 
+  #calendar, #calendar2 {
+    margin-bottom: 30px;
+  }
+
   .RdYlGn .q0-11{background:rgb(165,0,38)}
   .RdYlGn .q1-11{background:rgb(215,48,39)}
   .RdYlGn .q2-11{background:rgb(244,109,67)}
