@@ -1,0 +1,35 @@
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  /*display: none;*/
+  font-size: 15px;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.data-point {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: #FFF;
+}
+
+svg {
+  margin: 20px;
+}
+
+.y.axis {
+  font-size: 15px;
+}
