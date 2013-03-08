@@ -2,6 +2,9 @@ body {
   font: 10px sans-serif;
 }
 
+.navbar .brand {
+  margin-left: 0px !important;
+}
 .axis path,
 .axis line {
   fill: none;

@@ -2,20 +2,23 @@
 <meta charset="utf-8">
 <title>Indic Wikipedia: Projects</title>
 <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="http://d3js.org/d3.v3.js"></script>
-	<script src="/indicwiki/lib/jquery/jquery.min.js"></script>
 	<script src="/indicwiki/lib/jquery/jquery.tipsy.js"></script>
+	<script type="text/javascript"src="/indicwiki/lib/select/select2.min.js"></script>
+    <script type="text/javascript" src="/indicwiki/lib/bootstrap/js/bootstrap.min.js"></script>
 	<link href="/indicwiki/css/tipsy.css" rel="stylesheet">
 	<link href="/indicwiki/css/line.css" rel="stylesheet">
-	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="css/app.css" rel="stylesheet">
+	<link href="/indicwiki/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/indicwiki/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="/indicwiki/css/app.css" rel="stylesheet">
+	<link href="/indicwiki/lib/select/select2.css" rel="stylesheet"/>
 </head>
 
-<body>
-	<div id="wrap">
+<body data-spy="scroll">
+	<div id="wrap"> 
 
-		<div class="navbar navbar-fixed-top">
+		<div id ="navbar" class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<a class="brand" href="#">The Indic Wikipedia Projects</a>
 				<ul class="nav">
@@ -26,6 +29,11 @@
 					<li><a href="#new_articles">New Articles</a></li>
 					<li><a href="#total_articles">Total Articles</a></li>
 				</ul>
+
+				<div class="navbar-search pull-left">
+					<select id="search">
+					</select>
+				</div>
 			</div>
 		</div>
 
@@ -48,5 +56,5 @@
 		</div>
 	</div>
 </body>
-<script src="/indicwiki/js/line_new.js"></script>
+<script src="/indicwiki/js/line.js"></script>
 </html>
