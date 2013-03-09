@@ -53,10 +53,22 @@
     {name: 'Newari', code:'new'},
     {name: 'Kashmiri', code:'ks'},
     {name: 'Nepali', code:'ne'},
-    {name: 'Bishnupriya', code:'bpy'},
+    {name: 'Bishnupriya Manipuri', code:'bpy'},
     {name: 'Sanskrit', code:'sa'},
     {name: 'Pali', code:'pi'}];
 
+    var months = [{name: 'January', code: 'jan'},
+    {name: 'February', code: 'feb'},
+    {name: 'March', code: 'mar'},
+    {name: 'April', code: 'apr'},
+    {name: 'May', code: 'may'},
+    {name: 'June', code: 'jun'},
+    {name: 'July', code: 'jul'},
+    {name: 'August', code: 'aug'},
+    {name: 'September', code: 'sep'},
+    {name: 'October', code: 'oct'},
+    {name: 'November', code: 'nov'},
+    {name: 'December', code: 'dec'}];
 
   function capitalise(string)
   {   
@@ -147,7 +159,7 @@ function draw(data, attribute) {
     title: function() {
       var d = this.__data__;
       var pDate = d['date'];
-      return 'Date: ' + pDate.getDate() + "-" + pDate.getMonth() + "-" + pDate.getFullYear() + '<br>Value: ' + d[attribute]; 
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>Value: ' + d[attribute]; 
     }
   });
 
