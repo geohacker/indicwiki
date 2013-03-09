@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Indic Wikipedia: Projects</title>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="http://d3js.org/d3.v3.js"></script>
+	<script src="/indicwiki/lib/jquery/jquery.tipsy.js"></script>
+	<script type="text/javascript"src="/indicwiki/lib/select/select2.min.js"></script>
+    <script type="text/javascript" src="/indicwiki/lib/bootstrap/js/bootstrap.min.js"></script>
+	<link href="/indicwiki/css/tipsy.css" rel="stylesheet">
+	<link href="/indicwiki/css/line.css" rel="stylesheet">
+	<link href="/indicwiki/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/indicwiki/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="/indicwiki/css/app.css" rel="stylesheet">
+	<link href="/indicwiki/lib/select/select2.css" rel="stylesheet"/>
+</head>
+
+<body data-spy="scroll">
+	<div id="wrap"> 
+
+		<div id ="navbar" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<a class="brand" href="#">The Indic Wikipedia Projects</a>
+				<ul class="nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#new_editors">New Editors</a></li>
+					<li><a href="#active_editors">Active Editors</a></li>
+					<li><a href="#total_editors">Total Editors</a></li>
+					<li><a href="#new_articles">New Articles</a></li>
+					<li><a href="#total_articles">Total Articles</a></li>
+				</ul>
+
+				<div class="navbar-search pull-left">
+					<select id="search">
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="container graphs">
+			<div id="new_editors" class="row-fluid"></div>
+			<div id="active_editors" class="row-fluid"></div>
+			<div id="total_editors" class="row-fluid"></div>
+			<div id="new_articles" class="row-fluid"></div>
+			<div id="total_articles" class="row-fluid"></div>
+			</div>
+		</div>
+
+		<div id="push"></div>
+
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">&copy; <a href="http://cis-india.org">The Centre for Internet and Society</a> | Built by <a href="http://twitter.com/geohacker">@geohacker</a> and <a href="http://twitter.com/ajantriks">@ajantriks</a>.</p>
+		</div>
+	</div>
+</body>
+<script src="/indicwiki/js/line.js"></script>
+</html>

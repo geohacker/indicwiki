@@ -3,7 +3,7 @@
 
 html,
 body {
-  height: 100%;
+  /*height: 100%;*/
   /* The html and body elements cannot have any padding or margin. */
 }
 /* Wrapper for page content to push down footer */
@@ -100,6 +100,10 @@ button#start{
     position: relative;
     width: 45px;
     border-radius: 8px;
+  }
+
+  #calendar, #calendar2 {
+    margin-bottom: 30px;
   }
 
   .RdYlGn .q0-11{background:rgb(165,0,38)}
