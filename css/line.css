@@ -1,10 +1,11 @@
 body {
   font: 10px sans-serif;
+  padding-top: 40px !important; 
 }
-
+/*
 .navbar .brand {
-  margin-left: 0px !important;
-}
+margin-left: 0px !important;
+}*/
 .axis path,
 .axis line {
   fill: none;
@@ -30,9 +31,17 @@ body {
 }
 
 svg {
-  margin: 20px;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 9px 9px 9px 9px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    padding-bottom: 20px;
+    padding-right: 20px;
 }
 
 .y.axis {
   font-size: 15px;
+}
+
+.graphs div {
 }
