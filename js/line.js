@@ -1,5 +1,5 @@
   var margin = {top: 40, right: 10, bottom: 20, left: 70},
-  width = 1000 - margin.left - margin.right,
+  width = $('.row-fluid').width() - margin.left - margin.right,
   height = 540 - margin.top - margin.bottom;
 
   var parseDate = d3.time.format("%d-%m-%Y").parse;
@@ -112,7 +112,7 @@ function draw(data, attribute) {
   .call(yAxis)
   .append("text")
   .attr("transform", "rotate(-90)")
-  .attr("y", 6)
+  .attr("y", 14)
   .attr("dy", ".71em")
   .style("text-anchor", "end")
   .text(capitalise(attribute));
@@ -159,7 +159,7 @@ function draw(data, attribute) {
     title: function() {
       var d = this.__data__;
       var pDate = d['date'];
-      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>Value: ' + d[attribute]; 
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' +capitalise(attribute)+ ': ' + d[attribute]; 
     }
   });
 

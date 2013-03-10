@@ -13,10 +13,26 @@ margin-left: 0px !important;
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  /*display: none;*/
+.x.axis{
   font-size: 15px;
 }
+
+.y.axis {
+font-size: 15px;
+}
+
+.x.axis {
+  opacity: 0.5;
+}
+
+.y.axis path{
+  opacity: 0.5 !important;
+ }
+
+
+.y.axis g{
+  opacity: 0.5 !important;
+ }
 
 .line {
   fill: none;
@@ -36,12 +52,6 @@ svg {
     margin-bottom: 20px;
     margin-top: 50px;
     padding-bottom: 20px;
-    padding-right: 20px;
-}
-
-.y.axis {
-  font-size: 15px;
-}
-
-.graphs div {
+    padding-right: 5px;
+    width: 100%;
 }
