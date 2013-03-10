@@ -36,26 +36,26 @@
   var attributes = ['active_editors', 'new_editors', 'total_editors',
   'new_articles', 'total_articles'];
 
-    var languages = [{name:'Hindi', code:'hi'},
+    var languages = [{name: 'Assamese', code:'as'},
     {name:'Bengali', code:'bn'},
-    {name:'Marathi', code:'mr'},
-    {name: 'Telugu', code:'te'},
-    {name: 'Tamil', code:'ta'},
-    {name: 'Urdu', code:'ur'},
-    {name: 'Kannada', code:'kn'},
-    {name: 'Gujarati', code:'gu'},
-    {name: 'Sindhi', code:'sd'},
-    {name: 'Bhojpuri', code:'bh'},
-    {name: 'Malayalam', code:'ml'},
-    {name: 'Oriya', code:'or'},
-    {name: 'Punjabi', code:'pa'},
-    {name: 'Assamese', code:'as'},
-    {name: 'Newari', code:'new'},
-    {name: 'Kashmiri', code:'ks'},
-    {name: 'Nepali', code:'ne'},
     {name: 'Bishnupriya Manipuri', code:'bpy'},
+    {name: 'Bhojpuri', code:'bh'},
+    {name: 'Gujarati', code:'gu'},
+    {name:'Hindi', code:'hi'},
+    {name: 'Kannada', code:'kn'},
+    {name: 'Kashmiri', code:'ks'},
+    {name: 'Malayalam', code:'ml'},
+    {name:'Marathi', code:'mr'},
+    {name: 'Nepali', code:'ne'},
+    {name: 'Newari', code:'new'},
+    {name: 'Oriya', code:'or'},
+    {name: 'Pali', code:'pi'},
+    {name: 'Punjabi', code:'pa'},
     {name: 'Sanskrit', code:'sa'},
-    {name: 'Pali', code:'pi'}];
+    {name: 'Sindhi', code:'sd'},
+    {name: 'Tamil', code:'ta'},
+    {name: 'Telugu', code:'te'},
+    {name: 'Urdu', code:'ur'}];
 
     var months = [{name: 'January', code: 'jan'},
     {name: 'February', code: 'feb'},
@@ -207,10 +207,10 @@ languages.forEach(function(d) {
   .attr("value", function() {return d.code})
   .text(function() {return d.name});
 
-  $('#search').select2("val", "hi");
 });
 
   $('#search').select2({placeholder: 'Select a language', width: '200px'});
   $("#search").on("change", function(e){changeLanguage(e.val);});
+  $('#search').select2("val", "hi");
 
 }
