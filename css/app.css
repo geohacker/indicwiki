@@ -87,6 +87,9 @@ button#start{
     font-size: 10px;
   }
 
+.tile:hover{
+  border: 0.3px solid black;
+}
 
 #calendar  #tiles .tile {
     height: 25px;
