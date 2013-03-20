@@ -29,7 +29,7 @@
 					</ul>
 					<p class="less">0</p>
 					<p class="middle">30-60</p>
-					<p class="more">&gt;100</p>
+					<p class="more">125</p>
 				</div>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 	<script>
 
 	var color = d3.scale.quantize()
-	.domain([0, 100])
+	.domain([0, 120])
 	.range(d3.range(9).map(function(d) { return "q" + d + "-9"; }));
 
 	colors = d3.scale.category20c();
@@ -138,7 +138,7 @@
 	{name: 'November', code: 'nov'},
 	{name: 'December', code: 'dec'}];
 
-	var years = ['2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+	var years = ['2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012'];
 
 	var data;
 	var format = d3.time.format("%Y/%m/%d")
@@ -188,7 +188,8 @@
 			gravity: 'w', 
 			html: true, 
 			title: function() {
-				return '<p>'+ $(this).attr('month')+'<br>'+$(this).attr('lang') + ' ' + $(this).attr('data')+'</p>';
+				var y = $(this).parents().eq(4).attr('id').substring(3);
+				return $(this).attr('lang') + '<br>'+ $(this).attr('month') +' '+ y +'<br>' + 'Active Editors: ' + $(this).attr('data');					
 			}
 		});
 	}
