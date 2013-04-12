@@ -88,7 +88,7 @@ button#start{
   }
 
 .tile:hover{
-  border: 0.3px solid black;
+  opacity: 0.4
 }
 
 #calendar  #tiles .tile {
