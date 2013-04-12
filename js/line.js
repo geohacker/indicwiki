@@ -211,18 +211,15 @@ languages.forEach(function(d) {
   $("#search").on("change", function(e){window.location.search = '?project='+e.val;});
 
   url  = window.location.search;
+  slug = url.split('=')[0];
   project = url.split('=')[1];
-  if (project) {
+  if (slug == '?project' && project) {
     changeLanguage(project);
     $('#search').select2("val", project);
-
   }
 
   else {
     changeLanguage('hi');
     $('#search').select2("val", "hi");
   }
-
-
-
 }
