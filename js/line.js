@@ -24,7 +24,6 @@
   d3.csv("/indicwiki/data/data.csv", function(error, csv) {
     data = csv;
     initialize();
-    changeLanguage('hi');
   });
 
   function filterLanguage(code) {
@@ -84,8 +83,6 @@ function clear () {
 
 
 function draw(data, attribute) {
-  console.log(attribute);
-
 
   var dataCirclesGroup = null;
 
@@ -168,6 +165,7 @@ function draw(data, attribute) {
 var date;
 function changeLanguage(code) {
 
+
     filteredData = data.filter(filterLanguage(code));
       if (flag==1) {
     clear();
@@ -210,7 +208,21 @@ languages.forEach(function(d) {
 });
 
   $('#search').select2({placeholder: 'Select a language', width: '200px'});
-  $("#search").on("change", function(e){changeLanguage(e.val);});
-  $('#search').select2("val", "hi");
+  $("#search").on("change", function(e){window.location.search = '?project='+e.val;});
+
+  url  = window.location.search;
+  project = url.split('=')[1];
+  if (project) {
+    changeLanguage(project);
+    $('#search').select2("val", project);
+
+  }
+
+  else {
+    changeLanguage('hi');
+    $('#search').select2("val", "hi");
+  }
+
+
 
 }
