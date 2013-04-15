@@ -2,11 +2,11 @@
 <meta charset="utf-8">
 <title>Indic Wikipedia: Readership</title>
 <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="http://d3js.org/d3.v3.js"></script>
 	<script src="/indicwiki/lib/jquery/jquery.tipsy.js"></script>
 	<script type="text/javascript"src="/indicwiki/lib/select/select2.min.js"></script>
-    <script type="text/javascript" src="/indicwiki/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/indicwiki/lib/bootstrap/js/bootstrap.min.js"></script>
 	<link href="/indicwiki/css/tipsy.css" rel="stylesheet">
 	<link href="/indicwiki/css/line.css" rel="stylesheet">
 	<link href="/indicwiki/css/readers.css" rel="stylesheet">
@@ -19,35 +19,52 @@
 <body data-spy="scroll">
 	<div id="wrap"> 
 
-		<div id ="navbar" class="navbar navbar-fixed-top">
+		<div id ="navbar" class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
-				<a class="brand" href="#">The Indic Wikipedia Projects</a>
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-<!-- 					<li class="divider-vertical"></li>
-					<li><a href="#total_articles">Total Articles</a></li>
-					<li><a href="#new_articles">New Articles</a></li>
-					<li><a href="#total_editors">Total Editors</a></li>
-					<li><a href="#active_editors">Active Editors</a></li>
-					<li><a href="#new_editors">New Editors</a></li>
- -->					<li class="divider-vertical"></li>
-				</ul>
-
-				<div class="navbar-search pull-right">
-					<select id="search">
-					</select>
+					<a class="brand" href="#">The Indic Wikipedia Projects</a>
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li class="divider-vertical"></li>
+					</ul>
+<!-- 
+					<div class="navbar-search pull-right">
+						<select id="search"></select>
+					</div> -->
 				</div>
 			</div>
 		</div>
-	</div>
 
 		<div class="container graphs">
-			<div id="chart" class="row-fluid"></div>
+			<center>
+			<div class="row-fluid controls">
+				<div class="span2">
+					<select id="search">
+						<option></option>
+					</select>
+				</div>
+				<div class="span2">
+					<span id="new_articles" class="label"><i class="icon-file icon-white"></i> New Articles</span>
+				</div>
+				<div class="span2">
+					<span id="new_editors" class="label"><i class="icon-user icon-white"></i> New Editors</span>
+				</div>
+				<div class="span2">
+					<span id="total_articles" class="label"><i class="icon-book icon-white"></i> Total Articles</span>
+				</div>
+				<div class="span2">
+					<span "total_editors" class="label"><i class="icon-user icon-white"></i> Total Editors</span>
+				</div>
+				<div class="span2">
+					<span "mean_edits" class="label"><i class="icon-pencil icon-white"></i> Mean Edits</span>
+				</div>															
 			</div>
+			</center>
+			<div id="chart" class="row-fluid"></div>
 		</div>
+	</div>
 
-		<div id="push"></div>
+	<div id="push"></div>
 
 	<div id="footer">
 		<div class="container">

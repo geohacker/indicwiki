@@ -54,7 +54,10 @@ var months = [{name: 'January', code: 'jan'},
 
 d3.csv("/indicwiki/data/page_views_2.csv", function(error, csv) {
   data = csv;
-  data.forEach(function(d){d['date'] = parseDate(d['date']);});
+  data.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['views'] = Number(d['views']);
+    });
 });
 
 d3.csv("/indicwiki/data/num_articles_2.csv", function(error, csv) {
@@ -63,40 +66,22 @@ d3.csv("/indicwiki/data/num_articles_2.csv", function(error, csv) {
   initialize();
 });
 
-function draw(data, barData) {
+var svg = d3.select('#chart').append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var line = d3.svg.line()
+.x(function(d) { return x(d['date']);})
+.y(function(d) { return y(d['views']); });
+
+function drawLine(data) {
 
   var dataCirclesGroup = null;
 
   x.domain(d3.extent(data, function(d) { return d['date']; }));
   y.domain(d3.extent(data, function(d) { return d['views']; }));
-
-  var svg = d3.select('#chart').append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var xBar = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
-
-var yBar = d3.scale.linear()
-    .range([height, 0]);
-
-xBar.domain(barData.map(function(d) { return d['date']; }));
-yBar.domain([0, d3.max(barData, function(d) { return d['articles']; })]);
-
-  svg.selectAll(".bar")
-    .data(barData)
-  .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) { return xBar(d['date']); })
-    .attr("width", xBar.rangeBand())
-    .attr("y", function(d) { console.log(yBar(d['articles'])); return yBar(d['articles']); })
-    .attr("height", function(d) { return height - yBar(d['articles']); });
-
-  var line = d3.svg.line()
-  .x(function(d) { return x(d['date']);})
-  .y(function(d) { return y(d['views']); });
 
   svg.append("g")
   .attr("class", "x axis")
@@ -161,6 +146,61 @@ yBar.domain([0, d3.max(barData, function(d) { return d['articles']; })]);
 
 }
 
+function redrawLine(newData) {
+
+  // var line = d3.svg.line()
+  x.domain(d3.extent(newData, function(d) { return d['date']; }));
+  y.domain(d3.extent(newData, function(d) { return d['views']; }));
+
+  console.log(y.domain());
+
+  d3.selectAll("path.line")
+  .datum(newData)
+  .attr("class", "line")
+  .attr("d", line);
+
+  d3.select('.y').remove();
+
+  svg.append("g")
+  .attr("class", "y axis")
+  .call(yAxis)
+  .append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 14)
+  .attr("dy", ".71em")
+  .style("text-anchor", "end")
+  .text('Page Views');
+}
+
+function drawBar(barData) {
+  var xBar = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var yBar = d3.scale.linear()
+    .range([height, 0]);
+
+xBar.domain(barData.map(function(d) { return d['date']; }));
+yBar.domain([0, d3.max(barData, function(d) { return d['articles']; })]);
+
+  svg.selectAll(".bar")
+    .data(barData)
+  .enter().append("rect")
+    .attr("class", "bar")
+    .attr("x", function(d) { return xBar(d['date']); })
+    .attr("width", xBar.rangeBand())
+    .attr("y", function(d) {return yBar(d['articles']); })
+    .attr("height", function(d) { return height - yBar(d['articles']); });
+
+// svg.selectAll("text")
+//    .data(barData)
+//    .enter()
+//    .append("text")
+//    .text(function(d, i) {return i;})
+//    .attr("text-anchor", "middle")
+//    .attr("x", function(d, i) {return xBar(d['date'])+8;})
+//    .attr("y", function(d) {return yBar(d['articles']);});
+}
+
 function filterLanguage(code) {
   return (function(d) {return (d.language == code);});
 }
@@ -169,11 +209,23 @@ function changeLanguage(code) {
     filteredData = data.filter(filterLanguage(code));
     articleData = articles.filter(filterLanguage(code));
     // console.log(filteredData)
-    draw(filteredData, articleData);
+    // redrawBar(articleData);
+    redrawLine(filteredData);
   }
 
 function initialize() {
-  changeLanguage('hi');
+  
+  languages.forEach(function(d) {
+  d3.select("#search").append("option")
+  .attr("value", function() {return d.code})
+  .text(function() {return d.name});
+  });
+
+  $("#search").on("change", function(e){changeLanguage(e.val)});
+
+  drawLine(data.filter(filterLanguage('ml')));
+  $('#search').select2("val", 'ml');
+
 }
 
-$('#search').select2({placeholder: 'Select a language', width: '200px'});
+$('#search').select2({placeholder: 'Select a Language', width: '160px'});
