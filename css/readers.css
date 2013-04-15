@@ -1,0 +1,17 @@
+.x.axis{
+  font-size: 15px;
+}
+
+.y.axis {
+font-size: 10px;
+}
+
+.bar{
+    fill: #000000;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.line {
+	z-index: 100;
+}
