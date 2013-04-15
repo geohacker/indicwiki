@@ -1,4 +1,4 @@
-var margin = {top: 40, right: 10, bottom: 20, left: 70},
+var margin = {top: 20, right: 10, bottom: 20, left: 70},
 width = $('.row-fluid').width() - margin.left - margin.right,
 height = 540 - margin.top - margin.bottom;
 
@@ -17,6 +17,8 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
 .scale(y)
 .orient("left");
+
+var attribute;
 
 var languages = [{name: 'Assamese', code:'as'},
 {name:'Bengali', code:'bn'},
@@ -57,13 +59,48 @@ d3.csv("/indicwiki/data/page_views_2.csv", function(error, csv) {
   data.forEach(function(d){
     d['date'] = parseDate(d['date']);
     d['views'] = Number(d['views']);
-    });
+  });
 });
 
 d3.csv("/indicwiki/data/num_articles_2.csv", function(error, csv) {
   articles = csv;
-  articles.forEach(function(d){d['date'] = parseDate(d['date']);});
+  articles.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });
   initialize();
+});
+
+d3.csv("/indicwiki/data/num_new_articles_2.csv", function(error, csv) {
+  new_articles = csv;
+  new_articles.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });  
+});
+
+d3.csv("/indicwiki/data/new_editors_2.csv", function(error, csv) {
+  new_editors = csv;
+  new_editors.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });  
+});
+
+d3.csv("/indicwiki/data/total_editors_2.csv", function(error, csv) {
+  total_editors = csv;
+  total_editors.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });  
+});
+
+d3.csv("/indicwiki/data/mean_edits_2.csv", function(error, csv) {
+  mean_edits = csv;
+  mean_edits.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });  
 });
 
 var svg = d3.select('#chart').append("svg")
@@ -158,7 +195,7 @@ function redrawLine(newData) {
 
   d3.select('.y')
   .call(yAxis)
-  
+
   filtered = newData.filter(function(d) { if (d['views']!=0){return d};});
 
   var circles = d3.selectAll('.data-point')
@@ -186,25 +223,28 @@ function redrawLine(newData) {
 
 }
 
-
-function drawBar(barData) {
-  var xBar = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var xBar = d3.scale.ordinal()
+.rangeRoundBands([0, width], .1);
 
 var yBar = d3.scale.linear()
-    .range([height, 0]);
+.range([height, 0]);
 
-xBar.domain(barData.map(function(d) { return d['date']; }));
-yBar.domain([0, d3.max(barData, function(d) { return d['articles']; })]);
+function drawBar(barData) {
+
+  xBar.domain(barData.map(function(d) { return d['date']; }));
+  yBar.domain(d3.extent(barData, function(d) { return d['value']; }));
 
   svg.selectAll(".bar")
-    .data(barData)
+  .data(barData)
   .enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d) { return xBar(d['date']); })
-    .attr("width", xBar.rangeBand())
-    .attr("y", function(d) {return yBar(d['articles']); })
-    .attr("height", function(d) { return height - yBar(d['articles']); });
+  .transition()
+  .delay(1000)
+  .attr("class", "bar")
+  .attr("x", function(d) { return width; })
+  .attr("x", function(d) { return xBar(d['date']); })
+  .attr("width", xBar.rangeBand())
+  .attr("y", function(d) {return yBar(d['value']); })
+  .attr("height", function(d) { return height - yBar(d['value']); });
 
 // svg.selectAll("text")
 //    .data(barData)
@@ -213,7 +253,21 @@ yBar.domain([0, d3.max(barData, function(d) { return d['articles']; })]);
 //    .text(function(d, i) {return i;})
 //    .attr("text-anchor", "middle")
 //    .attr("x", function(d, i) {return xBar(d['date'])+8;})
-//    .attr("y", function(d) {return yBar(d['articles']);});
+//    .attr("y", function(d) {return yBar(d['total_articles']);});
+}
+
+function redrawBar (newData) {
+  yBar.domain(d3.extent(newData, function(d) { return d['value']; }));
+
+  svg.selectAll("rect")
+  .data(newData)
+  .transition()
+  .delay(500)
+  .attr("x", function(d) { return xBar(d['date']); })
+  .attr("width", xBar.rangeBand())
+  .attr("y", function(d) {return yBar(d['value']); })
+  .attr("height", function(d) { return height - yBar(d['value']); });  
+
 }
 
 function filterLanguage(code) {
@@ -221,26 +275,59 @@ function filterLanguage(code) {
 }
 
 function changeLanguage(code) {
-    filteredData = data.filter(filterLanguage(code));
-    articleData = articles.filter(filterLanguage(code));
-    // console.log(filteredData)
-    // redrawBar(articleData);
-    redrawLine(filteredData);
-  }
+  filteredData = data.filter(filterLanguage(code));
+  redrawBar(attributeData(code, attribute));
+  redrawLine(filteredData);
+}
 
 function initialize() {
-  
+
   languages.forEach(function(d) {
-  d3.select("#search").append("option")
-  .attr("value", function() {return d.code})
-  .text(function() {return d.name});
+    d3.select("#search").append("option")
+    .attr("value", function() {return d.code})
+    .text(function() {return d.name});
   });
 
   $("#search").on("change", function(e){changeLanguage(e.val)});
 
-  drawLine(data.filter(filterLanguage('ml')));
-  $('#search').select2("val", 'ml');
+  drawBar(articles.filter(filterLanguage('hi')));
+  drawLine(data.filter(filterLanguage('hi')));
+
+  $('#search').select2("val", 'hi');
+  d3.select("#total_articles").classed('label-info', true);
 
 }
 
 $('#search').select2({placeholder: 'Select a Language', width: '160px'});
+
+d3.selectAll('.label')
+.on('click', function() {
+  d3.selectAll('.label').classed('label-info', false);
+  d3.select(this).classed('label-info', true);
+  attribute = this.id;
+  code = $('#search').select2("val");
+  redrawBar(attributeData(code, attribute));
+});
+
+function attributeData(code, attribute) {
+  if(attribute == 'new_articles') {
+    newData = new_articles.filter(filterLanguage(code));
+  }
+  else if (attribute == 'new_editors') {
+    newData = new_editors.filter(filterLanguage(code));
+  } 
+
+  else if (attribute == 'total_articles') {
+    newData = articles.filter(filterLanguage(code));
+  }
+
+  else if (attribute == 'total_editors') {
+    newData = total_editors.filter(filterLanguage(code));
+  }
+
+  else {
+    newData = mean_edits.filter(filterLanguage(code));
+  };
+
+  return newData;
+}
