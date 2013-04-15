@@ -62,3 +62,8 @@ svg {
 .graphs {
     vertical-align: middle;
 }
+
+.copy {
+    margin-top: 40px;
+    font-size: 15px;
+}
