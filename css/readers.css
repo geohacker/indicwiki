@@ -1,6 +1,3 @@
-body {
-	padding-top: 0px !important;
-}
 .x.axis{
   font-size: 15px;
 }
@@ -12,18 +9,16 @@ font-size: 10px;
 .bar{
     fill: #000000;
     opacity: 0.2;
-    z-index: 0;
 }
 
-.line {
-	z-index: 100;
-}
 
 svg {
     background: none repeat scroll 0 0 #EEEEEE;
     border-radius: 9px 9px 9px 9px;
     margin-top: 10px !important;
     margin-bottom: 10px;
+    padding-bottom: 20px;
+    padding-right: 5px;
     width: 100%;
 }
 
@@ -36,3 +31,34 @@ svg {
 	cursor: pointer;
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.y.axis path{
+  opacity: 0.5 !important;
+ }
+
+
+.y.axis g{
+  opacity: 0.5 !important;
+ }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.data-point {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: #FFF;
+}
+
+.graphs {
+    vertical-align: middle;
+}

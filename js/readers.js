@@ -148,29 +148,44 @@ function drawLine(data) {
 
 function redrawLine(newData) {
 
-  // var line = d3.svg.line()
   x.domain(d3.extent(newData, function(d) { return d['date']; }));
   y.domain(d3.extent(newData, function(d) { return d['views']; }));
-
-  console.log(y.domain());
 
   d3.selectAll("path.line")
   .datum(newData)
   .attr("class", "line")
   .attr("d", line);
 
-  d3.select('.y').remove();
-
-  svg.append("g")
-  .attr("class", "y axis")
+  d3.select('.y')
   .call(yAxis)
-  .append("text")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 14)
-  .attr("dy", ".71em")
-  .style("text-anchor", "end")
-  .text('Page Views');
+  
+  filtered = newData.filter(function(d) { if (d['views']!=0){return d};});
+
+  var circles = d3.selectAll('.data-point')
+  .data(filtered);
+
+  circles
+  .attr('cx', function(d) { return x(d['date']) })
+  .attr('cy', function() { return y(0) })
+  .attr('r', function() { return (2)})
+  .transition()
+  .duration(1000)
+  .style('opacity', 1)
+  .attr('cx', function(d) { return x(d['date']) })
+  .attr('cy', function(d) { return y(d['views']) });
+
+  $('svg circle').tipsy({ 
+    gravity: 'w', 
+    html: true, 
+    title: function() {
+      var d = this.__data__;
+      var pDate = d['date'];
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' + 'Views: ' + d['views']; 
+    }
+  });
+
 }
+
 
 function drawBar(barData) {
   var xBar = d3.scale.ordinal()
