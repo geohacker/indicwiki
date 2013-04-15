@@ -62,14 +62,6 @@ d3.csv("/indicwiki/data/page_views_2.csv", function(error, csv) {
   });
 });
 
-d3.csv("/indicwiki/data/num_articles_2.csv", function(error, csv) {
-  articles = csv;
-  articles.forEach(function(d){
-    d['date'] = parseDate(d['date']);
-    d['value'] = Number(d['value']);
-  });
-  initialize();
-});
 
 d3.csv("/indicwiki/data/num_new_articles_2.csv", function(error, csv) {
   new_articles = csv;
@@ -101,6 +93,15 @@ d3.csv("/indicwiki/data/mean_edits_2.csv", function(error, csv) {
     d['date'] = parseDate(d['date']);
     d['value'] = Number(d['value']);
   });  
+});
+
+d3.csv("/indicwiki/data/num_articles_2.csv", function(error, csv) {
+  articles = csv;
+  articles.forEach(function(d){
+    d['date'] = parseDate(d['date']);
+    d['value'] = Number(d['value']);
+  });
+  initialize();
 });
 
 var svg = d3.select('#chart').append("svg")
