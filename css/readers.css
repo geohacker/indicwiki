@@ -27,7 +27,6 @@ svg {
 }
 
 .label {
-	width: 140px;
 	cursor: pointer;
 }
 
@@ -66,4 +65,17 @@ svg {
 .copy {
     margin-top: 40px;
     font-size: 15px;
+}
+
+.language{
+  width: 186px !important;
+}
+
+.parameter {
+  width: 228px !important;
+}
+
+.selectors .span2 {
+  width: 100px;
+  vertical-align: middle;
 }

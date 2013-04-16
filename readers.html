@@ -32,11 +32,48 @@
 
 		<div class="container graphs">
 			<div class="row-fluid copy">
-				<p class="lead">This is an interactive dashboard to understand what parameters affect the page views (readership) in each of the Indic Wikipedia projects. The line chart represents the page views from 2008 to 2012 and the bar charts represent various parameters as displayed. </p>
+				<p class="lead">This interactive dashboard shows the readership performances of the Indic language Wikipedia projects against various parameters, like Total Articles, Total Editors etc. The blue line gives the movement of page views from 2008 to 2012. The gray bars on the background represents the selected parameter for the month concerned.</p>
 
-				<p class="lead">Select the language and change the parameters to see different patterns.</p>
+				<p class="lead">If you want to rather compare the page views of all the Indic Wikipedia projects, you can find the visualisation here.</p>
+
+				<div class="row-fluid">
+					<div class="span3 lead language">
+						Select a Language:
+					</div>
+					<div class="span3">
+					<select id="search">
+						<option></option>
+					</select> <br />
+					</div>
+				</div>
+					<div class="row-fluid selectors">
+						<div class="span2 lead parameter">and select a parameter:</div>
+				<div class="span2">
+					<span id="new_articles" class="label"><i class="icon-file icon-white"></i> New Articles</span>
+				</div>
+				<div class="span2">
+					<span id="new_editors" class="label"><i class="icon-user icon-white"></i> New Editors</span>
+				</div>
+				<div class="span2">
+					<span id="total_articles" class="label"><i class="icon-book icon-white"></i> Total Articles</span>
+				</div>
+				<div class="span2">
+					<span id="total_editors" class="label"><i class="icon-user icon-white"></i> Total Editors</span>
+				</div>
+				<div class="span2">
+					<span id="mean_edits" class="label"><i class="icon-pencil icon-white"></i> Mean Edits</span>
+				</div>
+					</div>
+					<div class="row-fluid">
+				<p class="lead">to study emerging patterns.</p>
 			</div>
-			<center>
+			<!-- 	<p class="lead">Select a language: 
+					and select a parameter: <span id="new_articles" class="label"><i class="icon-file icon-white"></i> New Articles</span> <br />
+					to study emerging patterns.
+				</p>
+			 -->		
+			</div>
+<!-- 			<center>
 			<div class="row-fluid controls">
 				<div class="span2">
 					<select id="search">
@@ -59,7 +96,7 @@
 					<span id="mean_edits" class="label"><i class="icon-pencil icon-white"></i> Mean Edits</span>
 				</div>															
 			</div>
-			</center>
+			</center> -->
 			<div id="chart" class="row-fluid"></div>
 		</div>
 	<div id="push"></div>
