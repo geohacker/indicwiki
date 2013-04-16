@@ -110,6 +110,7 @@ function draw(data, attribute) {
   .append("text")
   .attr("transform", "rotate(-90)")
   .attr("y", 14)
+  .attr("class", "ylabel")
   .attr("dy", ".71em")
   .style("text-anchor", "end")
   .text(capitalise(attribute));

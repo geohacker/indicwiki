@@ -1,9 +1,11 @@
 .x.axis{
   font-size: 15px;
+  opacity: 0.5 !important;
 }
 
 .y.axis {
 font-size: 10px;
+fill: steelblue;
 }
 
 .bar{
@@ -43,9 +45,10 @@ svg {
  }
 
 
-.y.axis g{
-  opacity: 0.5 !important;
- }
+.ylabel {
+  fill: steelblue;
+  font-size: 13px;
+}
 
 .line {
   fill: none;

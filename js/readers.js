@@ -133,6 +133,7 @@ function drawLine(data) {
   .attr("transform", "rotate(-90)")
   .attr("y", 14)
   .attr("dy", ".71em")
+  .attr("class", "ylabel")
   .style("text-anchor", "end")
   .text('Page Views');
 
