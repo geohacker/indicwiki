@@ -3,7 +3,7 @@ width = $('.row-fluid').width() - margin.left - margin.right,
 height = 540 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%Y/%m/%d").parse;
-
+var parseNumber = d3.format(",");
 var x = d3.time.scale()
 .range([0, width]);
 
@@ -18,7 +18,7 @@ var yAxis = d3.svg.axis()
 .scale(y)
 .orient("left");
 
-var attribute;
+var attribute = 'total_articles';
 
 var languages = [{name: 'Assamese', code:'as'},
 {name:'Bengali', code:'bn'},
@@ -179,7 +179,7 @@ function drawLine(data) {
     title: function() {
       var d = this.__data__;
       var pDate = d['date'];
-      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' + 'Views: ' + d['views']; 
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' + 'Views: ' + parseNumber(d['views']); 
     }
   });
 
@@ -219,7 +219,7 @@ function redrawLine(newData) {
     title: function() {
       var d = this.__data__;
       var pDate = d['date'];
-      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' + 'Views: ' + d['views']; 
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' + 'Views: ' + parseNumber(d['views']); 
     }
   });
 
@@ -239,6 +239,15 @@ function drawBar(barData) {
   svg.selectAll(".bar")
   .data(barData)
   .enter().append("rect")
+  .on('mouseover', function(d) {
+    svg.append("text")
+    .text(parseNumber(d['value']))
+    .attr("text-anchor", "middle")
+    .attr("class", "barvalue")
+    .attr("x", xBar(d['date'])+8)
+    .attr("y", yBar(d['value']));
+  })
+  .on('mouseout', function(d) {d3.selectAll('.barvalue').remove();})
   .transition()
   .delay(1000)
   .attr("class", "bar")
@@ -247,15 +256,6 @@ function drawBar(barData) {
   .attr("width", xBar.rangeBand())
   .attr("y", function(d) {return yBar(d['value']); })
   .attr("height", function(d) { return height - yBar(d['value']); });
-
-// svg.selectAll("text")
-//    .data(barData)
-//    .enter()
-//    .append("text")
-//    .text(function(d, i) {return i;})
-//    .attr("text-anchor", "middle")
-//    .attr("x", function(d, i) {return xBar(d['date'])+8;})
-//    .attr("y", function(d) {return yBar(d['total_articles']);});
 }
 
 function redrawBar (newData) {
@@ -263,6 +263,15 @@ function redrawBar (newData) {
 
   svg.selectAll("rect")
   .data(newData)
+  .on('mouseover', function(d) {
+    svg.append("text")
+    .text(parseNumber(d['value']))
+    .attr("text-anchor", "middle")
+    .attr("class", "barvalue")
+    .attr("x", xBar(d['date'])+8)
+    .attr("y", yBar(d['value']));
+  })
+  .on('mouseout', function(d) {d3.selectAll('.barvalue').remove();})
   .transition()
   .delay(500)
   .attr("x", function(d) { return xBar(d['date']); })

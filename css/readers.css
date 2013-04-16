@@ -70,3 +70,12 @@ svg {
     margin-top: 40px;
     font-size: 15px;
 }
+
+svg rect:hover {
+  opacity: 0.4;
+}
+
+.barvalue {
+  font-size: 12px;
+  fill: #444;
+}
