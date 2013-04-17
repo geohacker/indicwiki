@@ -2,7 +2,8 @@
   width = $('.row-fluid').width() - margin.left - margin.right,
   height = 540 - margin.top - margin.bottom;
 
-  var parseDate = d3.time.format("%d-%m-%Y").parse;
+var parseDate = d3.time.format("%Y/%m/%d").parse;
+var parseNumber = d3.format(',');
 
   var x = d3.time.scale()
   .range([0, width]);
@@ -32,7 +33,7 @@
 
   var pointRadius = 4;
   
-  var attributes = ['active_editors', 'new_editors', 'total_editors',
+  var attributes = ['page_views', 'active_editors', 'new_editors', 'total_editors',
   'new_articles', 'total_articles'];
 
     var languages = [{name: 'Assamese', code:'as'},
@@ -157,7 +158,7 @@ function draw(data, attribute) {
     title: function() {
       var d = this.__data__;
       var pDate = d['date'];
-      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' +capitalise(attribute)+ ': ' + d[attribute]; 
+      return pDate.getDate() + " " + months[pDate.getMonth()].name + " " + pDate.getFullYear() + '<br>' +capitalise(attribute)+ ': ' + parseNumber(d[attribute]); 
     }
   });
 
@@ -208,7 +209,7 @@ languages.forEach(function(d) {
 
 });
 
-  $('#search').select2({placeholder: 'Select a language', width: '200px'});
+  $('#search').select2({placeholder: 'Select a language', width: '140px'});
   $("#search").on("change", function(e){window.location.search = '?project='+e.val;});
 
   url  = window.location.search;
