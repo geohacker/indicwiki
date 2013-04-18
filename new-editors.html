@@ -141,6 +141,7 @@
 
 	var data;
 	var format = d3.time.format("%Y/%m/%d")
+	var parseNumber = d3.format(',');
 
 	function createTiles(year) {
 		var title = "<p class='year text-center'>"+year+"</p>"
@@ -188,7 +189,7 @@
 			html: true, 
 			title: function() {
 				var y = $(this).parents().eq(4).attr('id').substring(3);
-				return $(this).attr('lang') + '<br>'+ $(this).attr('month') +' '+ y +'<br>' + 'New Editors: ' + $(this).attr('data');				
+				return $(this).attr('lang') + '<br>'+ $(this).attr('month') +' '+ y +'<br>' + 'New Editors: ' + parseNumber($(this).attr('data'));				
 			}
 		});
 	}

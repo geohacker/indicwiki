@@ -305,7 +305,7 @@ function initialize() {
   drawLine(data.filter(filterLanguage('hi')));
 
   $('#search').select2("val", 'hi');
-  d3.select("#total_articles").classed('label-info', true);
+  d3.select("#total_articles").classed('label-inverse', false);
 
 }
 
@@ -313,8 +313,8 @@ $('#search').select2({placeholder: 'Select a Language', width: '160px'});
 
 d3.selectAll('.label')
 .on('click', function() {
-  d3.selectAll('.label').classed('label-info', false);
-  d3.select(this).classed('label-info', true);
+  d3.selectAll('.label').classed('label-inverse', true);
+  d3.select(this).classed('label-inverse', false);
   attribute = this.id;
   code = $('#search').select2("val");
   redrawBar(attributeData(code, attribute));
