@@ -245,7 +245,14 @@ function drawBar(barData) {
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
     .attr("x", xBar(d['date'])+8)
-    .attr("y", yBar(d['value']));
+    .attr("y", yBar(d['value']))
+    svg.append("text")
+    .text(d['date'].getDate() + " " + months[d['date'].getMonth()].name + " " + d['date'].getFullYear())
+    .attr("text-anchor", "middle")
+    .attr("class", "barvalue")
+    .attr("x", xBar(d['date'])+10)
+    .attr("y", yBar(d['value']))
+    .attr("dy", -14);
   })
   .on('mouseout', function(d) {d3.selectAll('.barvalue').remove();})
   .transition()
@@ -269,7 +276,14 @@ function redrawBar (newData) {
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
     .attr("x", xBar(d['date'])+8)
-    .attr("y", yBar(d['value']));
+    .attr("y", yBar(d['value']))
+    svg.append("text")
+    .text(d['date'].getDate() + " " + months[d['date'].getMonth()].name + " " + d['date'].getFullYear())
+    .attr("text-anchor", "middle")
+    .attr("class", "barvalue")
+    .attr("x", xBar(d['date'])+10)
+    .attr("y", yBar(d['value']))
+    .attr("dy", -14);
   })
   .on('mouseout', function(d) {d3.selectAll('.barvalue').remove();})
   .transition()
