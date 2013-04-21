@@ -1,6 +1,6 @@
 var margin = {top: 20, right: 10, bottom: 20, left: 70},
 width = $('.row-fluid').width() - margin.left - margin.right,
-height = 540 - margin.top - margin.bottom;
+height = 560 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%Y/%m/%d").parse;
 var parseNumber = d3.format(",");
@@ -229,7 +229,7 @@ var xBar = d3.scale.ordinal()
 .rangeRoundBands([0, width], .1);
 
 var yBar = d3.scale.linear()
-.range([height, 0]);
+.range([height, 40]);
 
 function drawBar(barData) {
 
@@ -244,12 +244,14 @@ function drawBar(barData) {
     .text(parseNumber(d['value']))
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
+    .attr("id", "value")
     .attr("x", xBar(d['date'])+8)
     .attr("y", yBar(d['value']))
     svg.append("text")
     .text(d['date'].getDate() + " " + months[d['date'].getMonth()].name + " " + d['date'].getFullYear())
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
+    .attr("id", "date")
     .attr("x", xBar(d['date'])+10)
     .attr("y", yBar(d['value']))
     .attr("dy", -14);
@@ -275,12 +277,14 @@ function redrawBar (newData) {
     .text(parseNumber(d['value']))
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
+    .attr("id", "value")
     .attr("x", xBar(d['date'])+8)
     .attr("y", yBar(d['value']))
     svg.append("text")
     .text(d['date'].getDate() + " " + months[d['date'].getMonth()].name + " " + d['date'].getFullYear())
     .attr("text-anchor", "middle")
     .attr("class", "barvalue")
+    .attr("id", "date")
     .attr("x", xBar(d['date'])+10)
     .attr("y", yBar(d['value']))
     .attr("dy", -14);

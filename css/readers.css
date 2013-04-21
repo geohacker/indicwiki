@@ -76,6 +76,13 @@ svg rect:hover {
 }
 
 .barvalue {
-  font-size: 12px;
   fill: #444;
+}
+
+.barvalue#value{
+  font-size: 12px;
+}
+
+.barvalue#date{
+  font-size: 10px;
 }
