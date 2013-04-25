@@ -187,26 +187,31 @@ button#start{
   .gallery-item {
     font-size: 16px;
     list-style-type: none;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    text-align: center;
     opacity: 0.7;
   }
+
 .gallery-item:hover {
   opacity: 1;
 }
   .item-image {
     height: 200px;
-    line-height: 200px;
-    margin: 10px 0;
-    text-align: center;
-    vertical-align: middle;
 }
 
-.gallery-item-title {
+  .gallery-description {
     font-size: 16px;
-    font-weight: 600;
-    height: 40px;
-    line-height: 20px;
-    overflow: hidden;
-}
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  li.row {
+    margin-left: -45px;
+  }
+
+  .content {
+    margin-top: 30px;
+  }
