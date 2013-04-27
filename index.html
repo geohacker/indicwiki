@@ -1,9 +1,10 @@
-<html>
+﻿<html>
 <title>Indic Wikipedia</title>
 <head>
 	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
-
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<style type="text/css">
 	body {
 		padding-top-top: 40px;
@@ -18,14 +19,13 @@
 <body>
 
 	<div id="wrap">
-	
+
 		<div id="navbar" class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="#">The Indic Wikipedia Projects</a>
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li class="divider-vertical"></li>
+					<a class="brand pull-left" href="#">The Indic Wikipedia Projects</a>
+					<ul class="nav pull-right">
+						<li><a href="#about" role="button" data-toggle="modal">About</a></li>
 					</ul>
 				</div>
 			</div>
@@ -51,7 +51,55 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="projects-list">
+				<div class="row">
+				<center>
+				<ul>
+					<li><a href="/indicwiki/projects?project=as" target="_blank">as</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=bn" target="_blank">bn</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=bpy" target="_blank">bpy</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=bh" target="_blank">bh</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=gu" target="_blank">gu</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=hi" target="_blank">hi</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=kn" target="_blank">kn</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=ks" target="_blank">ks</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=ml" target="_blank">ml</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=mr" target="_blank">mr</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=ne" target="_blank">ne</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=new" target="_blank">new</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=or" target="_blank">or</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=pi" target="_blank">pi</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=pa" target="_blank">pa</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=sa" target="_blank">sa</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=sd" target="_blank">sd</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=ta" target="_blank">ta</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=te" target="_blank">te</a></li>
+					<li>•</li>
+					<li><a href="/indicwiki/projects?project=ur" target="_blank">ur</a></li>
+				</ul>
+				</center>
+				</div>
+			</div>
+
+			<div class="row gallery">
 				<ul>
 					<li class="row">
 						<div class="span2 gallery-item">
@@ -155,18 +203,34 @@
 					</li>				
 				</ul>
 
-</div>
-</div>
+			</div>
+		</div>
 
-<div id="push"></div>
+		<div id="push"></div>
+		<!-- Modal -->
+		<div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-body">
+				<center>
+				<img src="/indicwiki/images/cis.png">
+			</center>
+				<p>The Centre for Internet and Society will critically engage with concerns of digital pluralism, public accountability and pedagogic practices, in the field of Internet and Society, with particular emphasis on South-South dialogues and exchange.</p>
 
-</div>
+				<p>Through multidisciplinary research, intervention, and collaboration, we seek to explore, understand, and affect the shape and form of the internet, and its relationship with the political, cultural, and social milieu of our times.</p>
+				<hr>
+				<p><a href="http://sajjad.in" target="_blank">Sajjad Anwar</a></p>
+				<p>Sajjad Anwar is a hacktivist and programmer. He works on research and design of data analytics and infographics. He loves maps and have been part of the OpenStreetMap project for over four years. Associated with free software projects like Ubuntu and Mozilla Firefox, he is involved in building and testing accessible technologies.</p>
+				<p><a href="http://ajantriks.net" target="_blank">Sumandro Chattapadhyay</a></p>
+				<p>Sumandro Chattapadhyay studied economics and worked with architect-planners, social researchers and programmers on urban development, policy analysis, data visualisation and participatory mapping. Presently he is an independent researcher based in Delhi. He contributes to The Pop Up City blog and edits an upcoming blog on open geospatial data, mapping practices and location-based services in India.</p>
+			</div>
+		</div>
 
-<div id="footer">
-	<div class="container">
-		<p class="muted credit">&copy; <a href="http://cis-india.org">The Centre for Internet and Society</a> | Built by <a href="http://twitter.com/geohacker">@geohacker</a> and <a href="http://twitter.com/ajantriks">@ajantriks</a>.</p>
 	</div>
-</div>
+
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">&copy; <a href="http://cis-india.org">The Centre for Internet and Society</a> | Built by <a href="http://twitter.com/geohacker">@geohacker</a> and <a href="http://twitter.com/ajantriks">@ajantriks</a>.</p>
+		</div>
+	</div>
 
 </body>
 

@@ -204,7 +204,7 @@ button#start{
     padding-bottom: 10px;
   }
 
-  li {
+  .gallery li {
     list-style-type: none;
   }
 
@@ -215,3 +215,27 @@ button#start{
   .content {
     margin-top: 30px;
   }
+
+.projects-list li{
+  list-style-type: none;
+  display: inline;
+  margin-left: 6px;
+  color: #444;
+}
+
+.projects-list {
+  margin-bottom: 20px;
+}
+
+.projects-list li a{
+  color: #444;
+  text-decoration: underline;
+  opacity: 1;
+}
+
+.projects-list li a:hover {
+  color: #0088CC;
+}
+.projects-list .row{
+  margin-left: -45px;
+}
