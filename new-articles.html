@@ -9,16 +9,30 @@
 	<link href="/indicwiki/css/tipsy.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
 
+<style type="text/css">
+	body {
+		padding-top: 40px;
+		margin-top: 30px;
+	}
+</style>
+
 </head>
 <body>
 	<div id="wrap">
-		<div class="container" id="calendar">
-			<div class="row-fluid">
-				<h1 class="text-center">Indic Wikipedia: New Articles Every Month</h1>
-				<div class="span3 offset4">
-					<div id="legend">
-						<ul class="Greens">
-							<li class="q0-9"></li>
+
+		<div id ="navbar" class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+				<a class="brand" href="/indicwiki/">The Indic Wikipedia Projects</a>
+				<ul class="nav">
+					<li><a href="/indicwiki/new-editors">New Editors</a></li>
+					<li class="active"><a href="#">New Articles</a></li>
+					<li><a href="/indicwiki/active-editors">Active Editors</a></li>
+					<li><a href="/indicwiki/page-views">Page Views</a></li>
+				</ul>
+					<div class="pull-right" id="legend">
+						<ul class="nav Greens">
+							<li>0</li>
 							<li class="q1-9"></li>
 							<li class="q2-9"></li>
 							<li class="q4-9"></li>
@@ -26,14 +40,14 @@
 							<li class="q6-9"></li>
 							<li class="q7-9"></li>
 							<li class="q8-9"></li>
+							<li>&gt;100</li>
 						</ul>
-						<p class="less">0</p>
-						<p class="middle">30-60</p>
-						<p class="more">&gt;100</p>
 					</div>
-				</div>
 			</div>
+		</div>
+	</div>
 
+		<div class="container" id="calendar">
 			<div class="row-fluid">
 				<div class="span6">
 					<div id="vis2004"></div>
