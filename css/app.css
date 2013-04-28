@@ -18,7 +18,7 @@ body {
 /* Set the fixed height of the footer here */
 #push,
 #footer {
-  height: 60px;
+  height: 80px;
 }
 #footer {
   background-color: #f5f5f5;
@@ -51,8 +51,9 @@ body {
 }
 
 .text{
-  font-size: 26px;
+  font-size: 24px;
   margin-top: 25px;
+  margin-bottom: 25px;
   padding-left: 140px;
   line-height: 70px;
 }
@@ -205,13 +206,13 @@ button#start{
 }
 
 .projects-list li a{
-  color: #444;
-  text-decoration: underline;
+  color: #0645AD;
+  text-decoration: none;
   opacity: 1;
 }
 
 .projects-list li a:hover {
-  color: #0088CC;
+  text-decoration: underline;
 }
 .projects-list .row{
   margin-left: -45px;
