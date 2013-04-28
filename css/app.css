@@ -57,14 +57,6 @@ body {
   line-height: 70px;
 }
 
-/*#controls {
-  margin-top: 25px;
-}
-
-#controls #slider{
-  padding-top: 10px;
-}
-*/
 button#start{
   width: 30px;
   height: 25px;
@@ -74,12 +66,6 @@ button#start{
 .ui-slider .ui-slider-handle {
   height: 1.9em;
 }
-/*.navbar-inner {
-    background-color: #150528;
-    background-image: linear-gradient(to bottom, #751cdc, #3d0f73);
-    background-repeat: repeat-x;
-  }*/
-
 
 /* Styles for Calendar */
 
@@ -138,18 +124,9 @@ button#start{
 }
 
 #legend {
-    /*background: none repeat scroll 0 0 #F3F3F3;*/
-    /*border: 1px solid #F0F0F0;*/
-    /*border-radius: 6px 6px 6px 6px;*/
-    clear: both;
     color: #777777;
     font-size: 11px;
-    line-height: 11px;
-    /*margin: 10px 24px;*/
-    margin-bottom: 5px;
     overflow: hidden;
-    padding: 5px 5px;
-    width: 195px;
 }
 
 #legend ul {
@@ -161,7 +138,7 @@ button#start{
 #legend li {
   float: left;
   margin-right: 1px;
-  width: 20px;
+  width: 22.5px;
   height: 20px;
   margin-top: 10px;
 }
@@ -238,4 +215,8 @@ button#start{
 }
 .projects-list .row{
   margin-left: -45px;
+}
+
+.cis {
+  margin-top: 10px;
 }
