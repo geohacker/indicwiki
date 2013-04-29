@@ -2,13 +2,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Visualising Indic Wikipedia, 2001-2011</title>
+  <title>Indic Wikipedia: Motion Chart</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <style type="text/css">
     body {
           color: #444444;
           font-family: Verdana, sans-serif;
           font-size: 75%;
+          margin-top: 40px;
     }
     a {
           color: #4D87C7;
@@ -18,13 +19,28 @@
 		  text-decoration: underline;
     }
    </style>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/indicwiki/lib/bootstrap/js/bootstrap.min.js"></script>
+  <link href="/indicwiki/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/indicwiki/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="/indicwiki/css/app.css" rel="stylesheet">
 </head>
 <body>
+  <div id="wrap">
+      <div class="navbar-inner">
+    <div id ="navbar" class="navbar navbar-static-top">
+        <div class="container">
+          <a class="brand" href="/indicwiki/">The Indic Wikipedia Project</a>
+        </div>
+      </div>
+    </div>
  <!-- Created by ajantriks // www.ajantriks.net -->
  <!-- MotionChart generated in R 2.15.3 by googleVis 0.3.0 package -->
  <!-- Tue Mar 19 23:45:35 2013 -->
 
-
+ <div class="row-fluid">
+  <h3 class="text-center">Comparing Indic Wikipedia Projects across Languages, 2001-2011</h3>
+</div>
 <!-- jsHeader -->
 <script type="text/javascript" src="http://www.google.com/jsapi">
 </script>
@@ -27297,17 +27313,13 @@ displayChartMotionChartID77ee412ba87b()
  
 <!-- divChart -->
   
-<span style="text-align:center;"><p><font size="5">Comparing Indic Wikipedia Projects across Languages, 2001-2011</font></p></span>   
 <div id="MotionChartID77ee412ba87b"
  style="width: 100%; height: 500px;"
   align="center">
 </div>
 
 <div><span style="text-align:center"><br />
- <p>The visualisation uses data generated and provided by the <a href="https://wikimediafoundation.org/" target="_blank">Wikimedia Foundation</a></p>
- <p>Created by <a href="http://www.ajantriks.net/" target="_blank">Sumandro Chattapadhyay</a> and <a href="http://sajjad.in/" target="_blank">Sajjad Anwar</a> for <a href="http://cis-india.org/" target="_blank">The Center for Internet and Society</a> (2013)
  <p><a href="http://cran.r-project.org/" target="_blank">R version 2.15.1</a> (2012-06-22) &#8226; <a href="http://code.google.com/p/google-motion-charts-with-r/" target="_blank">googleVis-0.3.0</a> &#8226; <a href="https://developers.google.com/chart/" target="_blank">Google Chart Tools</a> - <a href="https://developers.google.com/terms/" target="_blank">Terms of Use</a> and <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/motionchart.html#Data_Policy" target="_blank">Data Policy</a></p>
-<p>Shared under <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/in/deed.en_US" target="_blank">Creative Commons BY-NC-SA 2.5 India</a> license</p>
 </div>
 
 
@@ -27315,5 +27327,12 @@ displayChartMotionChartID77ee412ba87b()
 <!-- Created by ajantriks // www.ajantriks.net -->
 <!-- htmlFooter -->
 </div>
+  <div id="push"></div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <p class="muted credit">&copy; <a href="http://cis-india.org">The Centre for Internet and Society</a> | Built by <a href="http://twitter.com/geohacker">@geohacker</a> and <a href="http://twitter.com/ajantriks">@ajantriks</a>.</p>
+    </div>
+  </div>
 </body>
 </html>
