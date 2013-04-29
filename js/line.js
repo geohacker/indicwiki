@@ -31,6 +31,10 @@ var parseNumber = d3.format(',');
     return (function(d) {return (d.language == code);});
   }
 
+  function filterLanguageItem(code) {
+    return (function(d) {return (d.code == code);});
+  }
+
   var pointRadius = 4;
   
   var attributes = ['page_views', 'active_editors', 'new_editors', 'total_editors',
@@ -199,7 +203,6 @@ function changeLanguage(code) {
 
 }
 
-
 function initialize() {
   
 languages.forEach(function(d) {
@@ -217,10 +220,13 @@ languages.forEach(function(d) {
   project = url.split('=')[1];
   if (slug == '?project' && project) {
     changeLanguage(project);
+    name = languages.filter(filterLanguageItem(project))[0].name;
+    $("#title").text("Overview of the "+name +" Wikipedia Project");
     $('#search').select2("val", project);
   }
 
   else {
+    $("#title").text("Overview of the Hindi Wikipedia Project");
     changeLanguage('hi');
     $('#search').select2("val", "hi");
   }
