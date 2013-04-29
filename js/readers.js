@@ -303,7 +303,13 @@ function filterLanguage(code) {
   return (function(d) {return (d.language == code);});
 }
 
+function filterLanguageItem(code) {
+  return (function(d) {return (d.code == code);});
+}
+
 function changeLanguage(code) {
+  name = languages.filter(filterLanguageItem(code))[0].name;
+  $("#title").text("Readership of the "+name+" Wikipedia Project");
   filteredData = data.filter(filterLanguage(code));
   redrawBar(attributeData(code, attribute));
   redrawLine(filteredData);
@@ -319,6 +325,7 @@ function initialize() {
 
   $("#search").on("change", function(e){changeLanguage(e.val)});
 
+  $("#title").text("Readership of the Hindi Wikipedia Project");
   drawBar(articles.filter(filterLanguage('hi')));
   drawLine(data.filter(filterLanguage('hi')));
 
